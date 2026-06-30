@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('gasp_theme_idx');
     if (savedTheme !== null) {
         currentThemeIndex = parseInt(savedTheme, 10);
-        // Safety check
         if (currentThemeIndex >= themes.length || currentThemeIndex < 0) {
             currentThemeIndex = 0;
         }
@@ -83,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const newTheme = themes[currentThemeIndex];
         document.body.classList.add(newTheme.class);
         
-        // Save to LocalStorage
         localStorage.setItem('gasp_theme_idx', currentThemeIndex);
         
         const triggerTooltip = (el) => {
@@ -273,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.className = `callout ${block.type}`;
                 const iconClass = block.type === 'note' ? 'ph-info' : 'ph-lightbulb-filament';
                 el.innerHTML = `
-                    <i class="ph ${iconClass}"></i>
+                    <i class="ph ${iconClass}" id="tip-icon"></i>
                     <div class="callout-content">${parseArrayText(block.value)}</div>
                 `;
                 break;
@@ -307,9 +305,18 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'roadmap':
                 el = document.createElement('div');
                 el.className = 'roadmap';
+                
+                // Identify the latest completed milestone index to expand it by default
+                let latestCompletedIdx = 0;
+                block.milestones.forEach((m, idx) => {
+                    if (m.status.toLowerCase().trim() === 'completed') {
+                        latestCompletedIdx = idx;
+                    }
+                });
+
                 block.milestones.forEach((m, idx) => {
                     const statusCls = m.status.toLowerCase().replace(' ', '-');
-                    const expandedCls = idx === 0 ? 'expanded' : '';
+                    const expandedCls = idx === latestCompletedIdx ? 'expanded' : '';
                     const item = document.createElement('div');
                     item.className = `roadmap-item ${statusCls} ${expandedCls}`;
                     
