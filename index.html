@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.5D Side Scroller Game Template Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-dark-orange"> <div class="ambient-glow" id="ambient-glow"></div>
+
+    <div class="mobile-header">
+        <button id="mobile-menu-btn" aria-label="Toggle Menu"><i class="ph ph-list"></i></button>
+        <div class="logo">2.5D SideScroller <span>Game Template</span></div>
+        <div class="theme-toggle-wrapper">
+            <button class="theme-toggle-mobile" id="theme-btn-mobile" aria-label="Cycle Theme">
+                <i class="ph ph-palette"></i>
+            </button>
+            <span class="theme-tooltip" id="theme-tooltip-mobile">Dark Orange</span>
+        </div>
+    </div>
+
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">2.5D SideScroller <span>Game Template</span></div>
+                <div class="header-actions">
+                    <div class="version-badge" id="project-version">v1.1</div>
+                    <div class="theme-toggle-wrapper">
+                        <button class="theme-toggle" id="theme-btn" aria-label="Cycle Theme">
+                            <i class="ph ph-palette"></i>
+                        </button>
+                        <span class="theme-tooltip" id="theme-tooltip">Dark Orange</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar-links">
+                <a href="https://discord.gg/kgnzpuDcag" target="_blank"><i class="ph ph-discord-logo"></i> Discord</a>
+                <a href="https://www.fab.com/sellers/WraithCG" target="_blank"><i class="ph ph-storefront"></i> Store</a>
+                <a href="https://www.youtube.com/@WraithCG" target="_blank"><i class="ph ph-youtube-logo"></i> Youtube</a>
+            </div>
+            
+            <div class="search-box">
+                <i class="ph ph-magnifying-glass"></i>
+                <input type="text" id="search-input" placeholder="Search documentation...">
+            </div>
+
+            <nav class="nav-tree">
+                <ul id="nav-list">
+                    </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <article id="content-container">
+                <div class="welcome-screen">
+                    <i class="ph ph-hexagon"></i>
+                    <h1>Welcome to the Documentation</h1>
+                    <p>Select a topic from the sidebar to begin building.</p>
+                </div>
+            </article>
+
+            <div class="bottom-nav" id="bottom-nav" style="display: none;">
+                <button id="prev-btn" class="nav-btn prev">
+                    <i class="ph ph-arrow-left"></i>
+                    <div class="nav-btn-text">
+                        <span>Previous</span>
+                        <strong id="prev-label">Intro</strong>
+                    </div>
+                </button>
+                <button id="next-btn" class="nav-btn next">
+                    <div class="nav-btn-text">
+                        <span>Next</span>
+                        <strong id="next-label">Setup</strong>
+                    </div>
+                    <i class="ph ph-arrow-right"></i>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightbox-close"><i class="ph ph-x"></i></button>
+        <img id="lightbox-img" src="" alt="Expanded View">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

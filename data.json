@@ -1,0 +1,2482 @@
+{
+    "id": "gasp-ss-v1",
+    "title": "Side Scroller Game Template v1.1",
+    "sections": [
+        {
+            "title": "Introduction",
+            "content": [
+                {
+                    "type": "note",
+                    "value": [
+                        "<ul>",
+                        "<li>Please note that this is a slightly rushed update. Version 1.1 is was actually scheduled for release by the end of May 2026.</li>",
+                        "<li>Due to some issues with my laptop and backup drive, I had to rebuilt the entire project in almost two weeks.</li>",
+                        "<li>Some images in the documentation might not match exactly with the actual code/blueprints.</li>",
+                        "<li>Also there are more variables and features in some components which have not been explained in this doc. They are quite self-explanatory.</li>",
+                        "<li>Thanks for checking out this project. Please do consider buying/wishlisting it on FAB and rating if bought already. Thanks :).</li>",
+                        "</ul>"
+                    ]
+                },
+                {
+                    "type": "image",
+                    "src": "https://cdnb.artstation.com/p/assets/images/images/099/702/507/large/wraithcg-screenshot-2026-06-05sfdsf-185623.jpg?1780718326",
+                    "align": "full",
+                    "caption": "Side Scroller Game Template with Motion Matching (v1.1)"
+                },
+                {
+                    "type": "header",
+                    "value": "Getting Started"
+                },
+                {
+                    "type": "text",
+                    "value": "This document serves as a comprehensive guide to the <b>Side Scroller Game Template v1.1 with Motion Matching</b>. The template provides a robust framework for creating sidescroller games in Unreal Engine, featuring dynamic parkour, character selection, customization, weapon system, combat system, throwable projectiles and and an interaction system."
+                },
+                {
+                    "type": "text",
+                    "value": [
+                        "<b>Showcase Videos</b>:",
+                        "<ul>",
+                        "<li><a id=\"link\" href=\"https://youtu.be/DtIhDXLzwPs?si=hEKXzGFFwicd2LDp\">Version 1.1 - WeaponSystem</a></li>",
+                        "<li><a id=\"link\" href=\"https://youtu.be/fM-QejymY2A?si=G3fOlCbatcbM0GeG\">Version 1.1 - SplinePathMovement</a></li>",
+                        "<li><a id=\"link\" href=\"https://youtu.be/HvrCJiJpe5Y?si=7RxscYsv9kI853RL\">Version 1.0 - Features</a></li>",
+                        "</ul>"
+                    ]
+                },
+                {
+                    "type": "tip",
+                    "value": "<b>Support:</b> For questions or assistance, please leave a comment on the product page or join the Discord server. Please consider rating and reviewing the asset if it proves useful."
+                }
+            ]
+        },
+        {
+            "title": "Development Roadmap",
+            "content": [
+                {
+                    "type": "text",
+                    "value": "Track the progress as the project upgrades. <ul><li>Green items are live,</li><li>Blue are currently being worked on</li><li>and Yellow are planned for future releases.</li></ul>"
+                },
+                {
+                    "type":"note",
+                    "value":[
+                        "<ul>",
+                        "<li>All my listings on Fab are LOCKED until the end of July 2026. As a result, I cannot put Version 1.1 up on Fab.</li>",
+                        "<li>If you wish to get this project-",
+                        "<ul>",
+                        "<li>Get the project from <a href=\"https://fab.com/s/1e5841e0beb8\">Fab Marketplace</a>.</li>",
+                        "<li>Once bought, DM your Order ID on discord or send an email.</li>",
+                        "<li>I'll get it verified and provide a google drive link for accessing the project.</li></ul></li>",
+                        "<li>I sincerely apologize for the delay in updating the project and inconvenience in accessing it :)</li>",
+                        "</ul>"
+                    ]
+                },
+                {
+                    "type": "roadmap",
+                    "milestones": [
+                        {
+                            "version": "Version 1.0",
+                            "date": "April 2026",
+                            "status": "Completed",
+                            "features": [
+                                "Simple Main Menu",
+                                "Character Death Screen",
+                                "Character Selection System",
+                                "Metahumans Support",
+                                "Movement Aware Camera Shifting",
+                                "Environment Creation Tools",
+                                "Dynamic Parkour Support",
+                                "Character Customization System",
+                                "Emote System",
+                                "Simple Interaction System",
+                                "Widgets Management System"
+                            ]
+                        },
+                        {
+                            "version": "Version 1.1",
+                            "date": "June 2026",
+                            "status": "Completed",
+                            "features": [
+                                "<b>This Version will not be available on FAB until end of July</b>.",
+                                "Enhanced Interactables",
+                                "Customisation Save",
+                                "Mover Component Support",
+                                "Enhanced Movement",
+                                "Spline Path Movement - Mover & CMC",
+                                "Advanced Weapon System",
+                                "Basic Combat System",
+                                "Projectiles Throw System",
+                                "2D Aiming System & Rotation",
+                                "Better Emotes",
+                                "Status Effects System",
+                                "Mid-Air Jumps"
+                            ]
+                        },
+                        {
+                            "version": "Version 1.2",
+                            "date": "TBA",
+                            "status": "in-progress",
+                            "features": [
+                                "Async Asset Loading Wherever Possible",
+                                "Item Inspection System",
+                                "Better Combat System",
+                                "Updated Enemies"
+                            ]
+                        },
+                        {
+                            "version": "Version 1.3",
+                            "date": "TBA",
+                            "status": "planned",
+                            "features": [
+                                "Async Asset Loading Wherever Possible",
+                                "Push-Pull Objects",
+                                "More Interactables",
+                                "Item Inspection System",
+                                "Elevators",
+                                "Refined Combat System",
+                                "Enemies",
+                                "Better NPCs",
+                                "Inventory System"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Important Notes",
+            "content": [
+                {
+                    "type": "header",
+                    "value": "Prerequisites"
+                },
+                {
+                    "type": "text",
+                    "value": "<b>Motion Matching:</b> This project uses the customized setup from the <i>GameAnimationSampleProject (GASP)</i> for Motion Matching. No new motion matching setup was specifically created for this project."
+                },
+                {
+                    "type": "note",
+                    "value": "The default setup has been modified to improve gameplay fluidity. But you will need to add specific animations to improve the results. The existing GASP animations have been repurposed for various actions."
+                },
+                {
+                    "type": "header",
+                    "value": "Project Settings"
+                },
+                {
+                    "type": "text",
+                    "value": [
+                        "<b>Required Plugins:</b><br>",
+                        "<ul>",
+                        "<li><b>Animation:</b> AnimationWarping, MotionWarping, AnimationLocomotionLibrary, PoseSearch, Chooser, RigLogic, DrawDebugLibrary, SmartObjects, Locomotor, CurveExpression, GameplayInteractions, LiveLink, LiveLinkControlRig.</li>",
+                        "<li><b>Tools:</b> ModelingToolsEditorMode, HairStrands, Mover, NetworkPrediction.</li>",
+                        "</ul>",
+                        "<b>Projectile</b> is a new object trace channel used for bullets."
+                    ]
+                },
+                {
+                    "type": "header",
+                    "value": "Save Game Data"
+                },
+                {
+                    "type": "text",
+                    "value": [
+                        "<b>Limited Save Data:</b>",
+                        "<ul>",
+                        "<li>The project uses BP_SideScrollerGameInstanceClass for saving game data between levels or game replays during any single play.",
+                        "<li>Only<i>Per-Character Customisation Data</i>, <i>Current Character Class Index</i> and <i>Weapons Equipped by the Character</i> are saved.</li>",
+                        "</ul>"
+                    ]
+                },
+                {
+                    "type": "header",
+                    "value": "Integration Strategy"
+                },
+                {
+                    "type": "text",
+                    "value": "The project is intended to be used as a base starting project. There may be some files present in the project but which have not been used anywhere."
+                },
+                {
+                    "type": "note",
+                    "value": "<b>Migration Guide:</b> Though modular, this project is not intended for migration into existing projects. However, you can easily download and integrate some systems selectively from FAB."
+                },
+                {
+                    "type": "note",
+                    "value": [
+                        "<ul>",
+                        "<li>Only a simple base enemy class is present in the project.</li>",
+                        "<li>They have no behviour and are open to modification and extension.</li>",
+                        "<li>Only block weapon projectiles. Else almost everything can move through the level without blocking.</li>",
+                        "</ul>"
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Controls",
+            "content": [
+                {
+                    "type": "image",
+                    "src": "https://cdnb.artstation.com/p/assets/images/images/099/347/229/large/wraithcg-screenshot-2026-05-25-151601.jpg?1779705782",
+                    "align": "full",
+                    "caption": "Input Actions"
+                },
+                {
+                    "type": "header",
+                    "value": "Gameplay Controls"
+                },
+                {
+                                    "type": "table",
+                                    "headers": [
+                                        "Function",
+                                        "Key",
+                                        "Type"
+                                    ],
+                                    "rows": [
+                                        [
+                                            "Move Left",
+                                            "A",
+                                            "Hold"
+                                        ],
+                                        [
+                                            "Move Right",
+                                            "D",
+                                            "Hold"
+                                        ],
+                                        [
+                                            "Crouch",
+                                            "C",
+                                            "Press"
+                                        ],
+                                        [
+                                            "Jump/Parkour",
+                                            "Space",
+                                            "Press"
+                                        ],
+                                        [
+                                            "Interact",
+                                            "E",
+                                            "Press"
+                                        ],
+                                        [
+                                            "Sprint",
+                                            "Shift",
+                                            "Hold"
+                                        ],
+                                        [
+                                            "Pause",
+                                            "Tab",
+                                            "Press"
+                                        ],
+                                        [
+                                            "Throw Projectile",
+                                            "P",
+                                            "Hold"
+                                        ],
+                                        [
+                                            "Force Reload Weapon",
+                                            "R",
+                                            "Press"
+                                        ],
+                                        [
+                                            "Toggle Primary-Secondary Slot",
+                                            "Q",
+                                            "Press"
+                                        ],
+                                        [
+                                            "SideArm Weapon Slot",
+                                            "Z",
+                                            "Press"
+                                        ],
+                                        [
+                                            "Equip Melee Weapon",
+                                            "1",
+                                            "Press"
+                                        ],
+                                        [
+                                            "Equip Ranged Weapon",
+                                            "2",
+                                            "Press"
+                                        ],
+                                        [
+                                            "Unequip All Weapons",
+                                            "3",
+                                            "Press"
+                                        ],
+                                        [
+                                            "Aim",
+                                            "Right Mouse Button",
+                                            "Hold"
+                                        ],
+                                        [
+                                            "Attack Combat",
+                                            "Left Mouse Button",
+                                            "Press"
+                                        ]
+                                    ]
+                                }
+            ]
+        },
+        {
+            "title": "Core Systems",
+            "content": [
+                {
+                    "type": "image",
+                    "src": "https://cdna.artstation.com/p/assets/images/images/098/070/394/large/wraithcg-screenshot-2026-04-12-103338.jpg?1776058849",
+                    "align": "full",
+                    "caption": "Core Game Systems"
+                },
+                {
+                    "type": "header",
+                    "value": "Game Data"
+                }
+            ],
+            "subsections": [
+                {
+                    "title": "Side Scroller Character",
+                    "content": [
+                        
+                        {
+                            "type": "header",
+                            "value": "Character Blueprints"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>The main character class are present in respective movement system's base folder.</li>",
+                                "<li>The pawn classes that are open to modification are those inside respective movement system's folder - <i>CBP_SideScroller_PlayerBase_CMC/Mover</i>.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdnb.artstation.com/p/assets/images/images/099/638/065/large/wraithcg-screenshot-2026-06-03-155727.jpg?1780527712",
+                            "align": "left",
+                            "caption": "CBP_SideScroller_NewUEFN_Mover -> CBP_SideScroller_PlayerBase_Mover"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdnb.artstation.com/p/assets/images/images/099/638/061/large/wraithcg-screenshot-2026-06-03-155720.jpg?1780527709",
+                            "align": "right",
+                            "caption": "CBP_SideScroller_NewUEFN_CMC -> CBP_SideScroller_PlayerBase_CMC"
+                        },
+                        {
+                            "type": "header",
+                            "value": "Playable Characters"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>The characters which use different skeleton than UEFN character skeleton use runtime retargeting.</li>",
+                                "<li>The <i>GenericRetargeter</i> anim blueprint is used for driving animations off of main character class.</li>",
+                                "</ul>"
+                            ]
+                        }
+                    ],
+                    "subsections": [
+                        {
+                            "title": "Side Scroller Character",
+                            "content": [
+                                {
+                                    "type": "header",
+                                    "value": "CBP_SideScrollerPlayerBase"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdnb.artstation.com/p/assets/images/images/099/638/065/large/wraithcg-screenshot-2026-06-03-155727.jpg?1780527712",
+                                    "align": "full",
+                                    "caption": "CBP_SideScroller_NewUEFN_CMC/Mover -> CBP_SideScroller_PlayerBase_Mover/CMC"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": "The logic for various actions is separated into different graphs."
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdna.artstation.com/p/assets/images/images/098/070/420/large/wraithcg-screenshot-2026-04-12-105027.jpg?1776058949",
+                                    "align": "left",
+                                    "caption": "MovementGraph"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdna.artstation.com/p/assets/images/images/098/070/426/large/wraithcg-screenshot-2026-04-12-105144.jpg?1776058959",
+                                    "align": "right",
+                                    "caption": "InterfaceGraph"
+                                },
+                                {
+                                    "type": "header",
+                                    "value": "Setting Up a New Character"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "See <b>Components > Character Selection System</b> for detailed instructions."
+                                    ]
+                                }
+                                
+                            ]
+                        },
+                        {
+                            "title": "Animation Blueprint",
+                            "content": [
+                                {
+                                    "type": "header",
+                                    "value": "ABP_GenericRetarget"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdnb.artstation.com/p/assets/images/images/099/638/073/large/wraithcg-screenshot-2026-06-03-155826.jpg?1780527726",
+                                    "align": "full",
+                                    "caption": "Animation Blueprint Graph"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "If the weapon animations are not blending correctly, you should try changing animation blending values in LayeredBlendPerBone nodes. <br> If your animations are drastically different from base GASP animations, you may need to redo the complete weapon animation blending in the respective character's animation blueprint graph."
+                                    ]
+                                },
+                                {
+                                    "type": "note",
+                                    "value": [
+                                        "See Epic's Documentation for adding new characters in Game Animation Sample Project. Same method applies here."
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": "CMC vs Mover Character",
+                            "content": [
+                                {
+                                    "type": "header",
+                                    "value": "CMC vs Mover Character"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": "Please find below a comparative table of features which differ among the characters. Other than these all features work the same for both characters."
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdnb.artstation.com/p/assets/images/images/099/638/069/large/wraithcg-screenshot-2026-06-03-155742.jpg?1780527721",
+                                    "align": "left",
+                                    "caption": "CMC Characters"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdna.artstation.com/p/assets/images/images/099/638/066/large/wraithcg-screenshot-2026-06-03-155736.jpg?1780527717",
+                                    "align": "right",
+                                    "caption": "Mover Characters"
+                                },
+                                {
+                                    "type": "table",
+                                    "headers": [
+                                        "Feature",
+                                        "CMC Character",
+                                        "Mover Character",
+                                        "Description"
+                                    ],
+                                    "rows": [
+                                        [
+                                            "Sliding",
+                                            "No",
+                                            "Yes",
+                                            "Not added explicitly, available out of the box with Mover character."
+                                        ],
+                                        [
+                                            "Combat Rotation",
+                                            "Yes",
+                                            "No",
+                                            "When in combat the character can be rotated left or right to attack enemies. <br>CMC supports a simple boolean <i>bAllowPhysicsRotationDuringRootMotion</i> and based on movement input the character rotates. No such feature is present out of the box in Mover component and I do not know how I can add/modify it."
+                                        ],
+                                        [
+                                            "Left Hand IK",
+                                            "Yes",
+                                            "Yes (better)",
+                                            "Present in both but better in Mover because the hand was positioned based on Mover character. If you wish to use CMC character, you will need to re-position the LeftHandIK Socket in the weapons."
+                                        ],
+                                        [
+                                            "Physics Impulse Effect",
+                                            "Yes (better)",
+                                            "Yes",
+                                            "It is supported in CMC by default. There is a work-around used for Mover characters."
+                                        ],
+                                        [
+                                            "Aiming Rotation ",
+                                            "Yes",
+                                            "Yes (Better)",
+                                            "Rotation while aiming sometimes glitches in CMC characters."
+                                        ]
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Game Mode",
+                    "content": [
+                        {
+                            "type": "header",
+                            "value": "GM_SideScrollerBase"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdna.artstation.com/p/assets/images/images/099/347/226/large/wraithcg-screenshot-2026-05-25-151544.jpg?1779705777",
+                            "align": "full",
+                            "caption": "GM_SideScrollerBase"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>Responsible for maintaining and communicating between different base elements in the project.",
+                                "<li><i>AddWidgetToScreen</i> interface call is executed by the game mode which in turn asks the <i>HUD_SideScroller</i> to add the requested widget.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>Create a data asset of type <b>PDA_GameModeData</b>.</li>",
+                                "<li>Then create a child class of type <b>GM_SideScrollerBase</b> and assign your game mode data asset. Other classes must be as shown in image above.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "header",
+                            "value": "Properties"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li><b>PrimaryPawnClass:</b> Set it to your desired pawn - either Mover_PlayerBase or CMC_PlayerBase.</li>",
+                                "<li><b>CharacterSelectionData:</b> Set it to retargeted characters that use the same movement component as <i>PrimaryPawnClass</i>.</li>",
+                                "<li><b>CircularCharacterSelectionList:</b> Decides whether or not the character selection system will be cyclic.</li>",
+                                "<li><b>CameraRotationSpeed:</b> The speed with which the camera turns at any point on the spline path - corners basically. 0 is instant.</li>",
+                                "<li><b>isMovementAware:</b> Decides whether or not camera shifts left/right with player movement.</li>",
+                                "<li><b>DynamicCamera:</b> Allows the player to change between Near, Far and Balanced Camera presets.</li>",
+                                "<li><b>DefaultCameraStyle:</b> If dynamic camera is set to false, then this dictates the default camera preset to use.</li>",
+                                "<li><b>DefaultCameraShift:</b> If the movement aware shifting is set to false, then this dictates where camera rests with respect to player.</li>",
+                                "</ul>"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Player Controller",
+                    "content": [
+                        {
+                            "type": "header",
+                            "value": "PC_SideScroller"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdnb.artstation.com/p/assets/images/images/098/070/407/large/wraithcg-screenshot-2026-04-12-103814.jpg?1776058897",
+                            "align": "full",
+                            "caption": "PC_SideScroller"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>Responsible for managing player character data and actual logic of fetching character in either direction is managed in the parent class.</li>",
+                                "<li>Deactivation of fetching characters in either directions on the character selection screen is also managed here.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "header",
+                            "value": "Properties"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "There are no configurable properties in this class. They are fetched from GameMode Data Asset."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "HUD Manager",
+                    "content": [
+                        {
+                            "type": "header",
+                            "value": "HUD_SideScroller"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdnb.artstation.com/p/assets/images/images/098/070/403/large/wraithcg-screenshot-2026-04-12-103613.jpg?1776058887",
+                            "align": "full",
+                            "caption": "HUD_SideScroller"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>Responsible for management of on-screen widgets.</li>",
+                                "<li>Based on widgets configuration, corresponding level sequences are played in the background of the widget screens.</li>",
+                                "<li>It is called by the game mode internally when any widget is requested.</li>",
+                                "<li>It is based on <i>Widgets Management System V1.1</i>.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "header",
+                            "value": "Properties"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li><b>WidgetsDB:</b> The data asset that contains configurations regarding various widgets to be added to viewport on demand. It is fetched from gameMode.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "tip",
+                            "value": [
+                                "Do not modify <b>CachedWidget</b> directly/indirectly inside or from outside. It is categorized under <i>Privates</i> but not marked private to allow instant access to game mode when required."
+                            ]
+                        }
+                    ],
+                    "subsections": [
+                        {
+                            "title": "Setup",
+                            "content": [
+                                {
+                                    "type": "header",
+                                    "value": "Adding New Widget Screen"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdnb.artstation.com/p/assets/images/images/098/070/449/large/wraithcg-screenshot-2026-04-12-110810.jpg?1776059007",
+                                    "align": "left",
+                                    "caption": "E_WidgetScreen"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "<ul>",
+                                        "<li>Create a new widget blueprint of your choice.</li>",
+                                        "<li>Go to <i>Components > Widgets > Enumeration</i> and open <b>E_WidgetScreen</b>.</li>",
+                                        "<li>Add a new enumeration value and rename it to your desired category.</li>",
+                                        "<li>Click Save.</li>",
+                                        "<li>Now go to <i>Components > Widgets > DataAsset</i> and open <b>DA_PDA_WidgetData</b>.</li>",
+                                        "<li>Add a new element by clicking the plus icon.</li>",
+                                        "</ul>",
+                                        "<br>"
+                                    ]
+                                },
+                                {
+                                    "type": "tip",
+                                    "value": "You can also create a new camera rig and assign it in the <i>CameraDirector_SandboxCharacter's</i> \"WidgetController\" code block on switch enum to further elevate your game :)"
+                                },
+                                {
+                                    "type": "header",
+                                    "value": "Properties"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdna.artstation.com/p/assets/images/images/095/793/680/large/wraithcg-screenshot-2026-01-26-124213.jpg?1769535403",
+                                    "align": "right",
+                                    "caption": "DA_PDA_WidgetData"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "<ul>",
+                                        "<li><b>WidgetScreen:</b> Select your widget category.</li>",
+                                        "<li><b>WidgetElement:</b> Assign the widget blueprint relative to this category.</li>",
+                                        "<li><b>PlayLevelSequence:</b> This toggle determines whether or not level sequences will be played in the background of this widget.</li>",
+                                        "<li><b>LevelSequences:</b> Add the level sequences that can be played in this array. Only required if <i>PlayLevelSequence</i> boolean is <i>True</i>.",
+                                        "<ul>",
+                                        "<li><b>PlayableSequence:</b> Assign a valid level sequence.</li>",
+                                        "<li><b>PlayRate:</b> Adjust the play rate of this level sequence.</li>",
+                                        "<li><b>Transform:</b> By default, all level sequences are played relative to the player. Use these transform values to adjust the sequence relative to player.</li>",
+                                        "</ul></li>",
+                                        "</ul>"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Widget Elements",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "value": "These widget elements have been used to create the existing widget blueprints. The widgets management is not tied to them and you can use your own custom widgets too."
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdna.artstation.com/p/assets/images/images/099/347/218/large/wraithcg-screenshot-2026-05-25-151501.jpg?1779705764",
+                                    "align": "left",
+                                    "caption": "Widget Elements"
+                                }
+                            ],
+                            "subsections": [
+                                {
+                                    "title": "E_Button",
+                                    "content": [
+                                        {
+                                            "type": "header",
+                                            "value": "Properties"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "value": [
+                                                "<ul>",
+                                                "<li><b>Name:</b> Assign the name of the button.</li>",
+                                                "<li><b>Typeface:</b> The text can be either Regular or Bold.</li>",
+                                                "<li><b>FontFamily:</b> Change the font family of this button text.</li>",
+                                                "<li><b>FontSize:</b> Set the font size.",
+                                                "<li><b>SkewText:</b> Skew the text using float value.</li>",
+                                                "<li><b>Spacing:</b> Adjust the letter spacing.</li>",
+                                                "<li><b>Scale:</b> Change the render scale of the text in X and Y directions.</li>",
+                                                "<li><b>ColorData:</b> Assign the colors of this button during various events - normal, hovered, clicked, passive, etc;</li>",
+                                                "<li><b>MonoSpacing:</b> Toggle for whether or not to use monospacing for this button text.</li>",
+                                                "<li><b>MonoSpacingWidth:</b> Adjust the monospacing width.</li>",
+                                                "<li><b>ShadowColor:</b> Customize the shadow color for this button text.</li>",
+                                                "<li><b>ShadowOffset:</b> Adjust the shadow offset.</li>",
+                                                "<li><b>Status:</b> Whether or not the button the active on start. Depending on the status, the assigned colors will appear.</li>",
+                                                "<li><b>WarpText:</b> Whether or not to adjust the text within the bounds of the button.</li>",
+                                                "<li><b>BackgroundBlur:</b> Adjust the strength of the background blur behind the text.</li>",
+                                                "</ul>"
+                                            ]
+                                        },
+                                        {
+                                            "type": "header",
+                                            "value": "Functions & Dispatchers"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "value": [
+                                                "<ul>",
+                                                "<li><b>SetButtonStatus:</b> This function is used to toggle between the active and passive states.</li>",
+                                                "<li><b>ButtonIsClicked:</b> This event dispatcher is used to simulate button click action.</li>",
+                                                "</ul>"
+                                            ]
+                                        },
+                                        {
+                                            "type": "note",
+                                            "value": [
+                                                "These properties are used in some other widget elements. It is possible that not all of these properties are used for any element and you may have to manually customize it."
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "E_FixedText",
+                                    "content": [
+                                        {
+                                            "type": "text",
+                                            "value": "This is for on-screen text that never changes."
+                                        },
+                                        {
+                                            "type": "header",
+                                            "value": "Properties"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "value": "<ul><li>It uses all the same text properties as to <i>E_Button</i> element.</li></ul>"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "E_VariableText",
+                                    "content": [
+                                        {
+                                            "type": "text",
+                                            "value": "This is for on-screen text that changes based on player actions."
+                                        },
+                                        {
+                                            "type": "header",
+                                            "value": "Properties"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "value": [
+                                                "<ul><li>It uses all the same text properties as to <i>E_Button</i> element.</li>",
+                                                "<li>It uses <i>SetNewText</i> function to change on-screen text.</li></ul>"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "E_IconElement",
+                                    "content": [
+                                        {
+                                            "type": "text",
+                                            "value": "This is an image based widget element. Wherever an image was needed, this was used."
+                                        },
+                                        {
+                                            "type": "header",
+                                            "value": "Properties"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "value": [
+                                                "<ul><li>It uses <i>SetNewImage</i> function to change on-screen image. Takes a Texture2D format file as input.</li></ul>"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Camera System",
+                    "content": [
+                        {
+                            "type": "header",
+                            "value": "CameraDirector_SideScrollerCharacter"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdnb.artstation.com/p/assets/images/images/098/070/411/large/wraithcg-screenshot-2026-04-12-104031.jpg?1776058911",
+                            "align": "full",
+                            "caption": "CameraDirector_SideScrollerCharacter"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>Responsible for management of camera screens.</li>",
+                                "<li>Existing camera rigs can be modified or new ones can be created based on your familiarity with the Camera Rigs.</li>",
+                                "<li>Lot of camera rigs are already present in the project for many different actions and widget screens.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "header",
+                            "value": "Properties"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdna.artstation.com/p/assets/images/images/099/347/172/large/wraithcg-screenshot-2026-05-25-143817.jpg?1779705693",
+                            "align": "right",
+                            "caption": "Available Camera Rigs"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "You can customize the camera rigs and available presets in the CHT_CameraRig."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Enemy",
+                    "content": [
+                        {
+                            "type": "header",
+                            "value": "Base Enemy Class"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdna.artstation.com/p/assets/images/images/099/638/066/large/wraithcg-screenshot-2026-06-03-155736.jpg?1780527717",
+                            "align": "full",
+                            "caption": "CBP_SideScrollerEnemyBase_CMC/Mover"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>This is a simple enemy class.</li>",
+                                "<li>CBP_SideScrollerEnemyBase_CMC/Mover use respective movement components for navigating the world.</li>",
+                                "<li>Same as the player blueprints, not all features are same between the CMC base enemy and the Mover base enemy.</li>",
+                                "<li>The basic features include getting hit by bullets and during melee combat.</li>",
+                                "<li>Since both enemy and combat systems are very basic, therefore when hit, a simple montage played as a hitReaction using the BPC_WeaponComponent.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type":"note",
+                            "value":"The properties and systems relating to enemy will change greatly in next versions."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Components",
+            "content": [
+                {
+                    "type": "text",
+                    "value": "This template has been built with modular architecture in mind. Everything is organized in its own isolated space. Interfaces and player pawn reference serve as the communication channels :)"
+                },
+                {
+                    "type": "image",
+                    "src": "https://cdnb.artstation.com/p/assets/images/images/098/070/393/large/wraithcg-screenshot-2026-04-12-103312.jpg?1776058842",
+                    "align": "full",
+                    "caption": "Components"
+                }
+            ],
+            "subsections": [
+                {
+                    "title": "Player Attributes Component",
+                    "content": [
+                        {
+                            "type": "header",
+                            "value": "BPC_PlayerAttributesComponent"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdnb.artstation.com/p/assets/images/images/099/347/171/large/wraithcg-screenshot-2026-05-25-143802.jpg?1779705689",
+                            "align": "full",
+                            "caption": "BPC_PlayerAttributesComponent"
+                        },
+                        {
+                            "type": "text",
+                            "value": "This component manages critical character and gameplay data."
+                        },
+                        {
+                            "type": "header",
+                            "value": "Attributes"
+                        },
+                        {
+                            "type":"image",
+                            "src":"https://cdna.artstation.com/p/assets/images/images/099/638/102/large/wraithcg-screenshot-2026-06-03-160011.jpg?1780527793",
+                            "align":"right",
+                            "caption":"BPC_PlayerAttributesComponent Properties"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li><b>isMover:</b> Makes the component use mover specific nodes for some actions.</li>",
+                                "<li><b>MaxJumpCount:</b> Number of mid-air jumps allowed to the player subtracting 1. Example - If MaxJumpCount is 2, the player gets 1 mid-air jump.</li>",
+                                "<li><b>RagdollOnDeath:</b> This enables the character body to be able to ragdoll on colliding with the obstacles. If false, then any random valid animation montage from the <i>DeathMontages</i> array is played.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "header",
+                            "value": "Emote"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li><b>Wait Time:</b> It is the amount of wait before the player starts to emote on any screen.</li>",
+                                "<li><b>Blend Out Time:</b> Time taken to abruptly stop an emote.</li>",
+                                "<li><b>Min and Max Delays:</b> A random time between these is used to blend out an emote abruptly when there is an another emote sequence to play.</li>",
+                                "<li><b>Emote Data:</b> Data asset containing emoting sequences per widget screen.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "header",
+                            "value": "Debug"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li><b>DebugEmoteSequenceIndex:</b> This prints which emote sequence index is currently playing on the character.</li>",
+                                "<li><b>DebugEmoteAnimMontage:</b> This prints the name of the emote montage currently playing on the character.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "header",
+                            "value": "Look Ahead"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li><b>LookAheadDistance:</b> The distance from the character to trace for obstacles.</li>",
+                                "<li><b>LookAheadRadius:</b> The radius of the sphere tracer used for tracing.</li>",
+                                "<li><b>LookAheadStartOffset:</b> Small distance offset from player character from where tracing starts.</li>",
+                                "<li><b>LookAheadDebugDraw:</b> Whether or not to draw debug traces.</li>",
+                                "<li><b>LookAheadZOffsets:</b> The offsets which are used for tracing. A trace is fired for every element present here.</li>",
+                                "<li><b>LookAheadObjects:</b> An array that contains the ObjectTypes which supposedly block player movement path.</li>",
+                                "</ul>"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Emote System",
+                    "content": [
+                        {
+                            "type": "header",
+                            "value": "Emote Data Asset"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdnb.artstation.com/p/assets/images/images/095/627/645/large/wraithcg-screenshot-2026-01-21-235504.jpg?1769069362",
+                            "align": "full",
+                            "caption": "DA_EmoteActionData Setup"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<b>Emote Data Asset:</b> This is a map of emote data with respect to a widget screen.",
+                                "<ul>",
+                                "<li><b>Abort Previous:</b> This aborts the emote montage abruptly and starts a fresh sequence of emote montages available for a widget screen.</li>",
+                                "<li>If the previous emote sequence is not aborted, then the emote sequence related to previous widget screen is completed first and then the new emote sequence is used.</li>",
+                                "<li><b>AnimationMontages:</b> Contains the montage sequences.</li>",
+                                "<li><b>PlaySequentially:</b> Whether or not to play all the montages in a sequential order. If not then any number of montages are selected and played for some time. When one sequence is complete, then another sequence  from AnimationMontages array is searched and selected for playing if available.</li></ul>"
+                            ]
+                        },
+                        {
+                            "type": "tip",
+                            "value": [
+                                "You can define more than one montage sequence like –",
+                                "<ul><li>Standing up -> Greeting the player -> Sitting down</li>",
+                                "<li>Taking out phone -> Using it -> Putting it down</li>"
+                            ]
+                        },
+                        {
+                            "type": "note",
+                            "value": [
+                                "Note that any montage needs time to start and end. If the widget screens are switched a lot, the player character may glitch when playing montages becaues every widget screen on re-initializes the emote system."
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Character Selection System",
+                    "content": [
+                        {
+                            "type": "header",
+                            "value": "System Overview"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdna.artstation.com/p/assets/images/images/098/070/444/large/wraithcg-screenshot-2026-04-12-110102.jpg?1776058997",
+                            "align": "full",
+                            "caption": "DA_CharacterSelectionData Details"
+                        },
+                        {
+                            "type": "text",
+                            "value": "The character data is fetched frome <b>_DA_PDA_CharacterSelectionData_CMC/Mover</b>. It is recommended that all characters must inherit from <b>CBP_SideScroller_PlayerBase_CMC/Mover</b> character to preserve running logic and expected features."
+                        },
+                        {
+                            "type": "header",
+                            "value": "Adding New Characters"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdnb.artstation.com/p/assets/images/images/099/638/115/large/wraithcg-screenshot-2026-06-03-160400.jpg?1780527819",
+                            "align": "full",
+                            "caption": "DA_CharacterData_xyz Details"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul><li>Right Click on your desired pawn class -> Create Child Class.</li>",
+                                "<li>Create a new character data asset ( or duplicate existing) and fill the respective data.</li>",
+                                "<ul><li><b>Name: </b> Name of the character used for decorative purposes on the character selection screen.</li>",
+                                "<li><b>Class: </b> Assign the class of newly created child character blueprint.</li>",
+                                "<li><b>Description: </b> Fill in the lore details, background, or quick history of the character.</li>",
+                                "<li><b>Icon: </b> Assign an icon to your character displayed on the top-left of the screen.</li>",
+                                "<li><b>CustomizationData: </b> Assign the customization data for your character. For more info, check out the Character Customization Section.</li>",
+                                "<li>Add the new DA to <i>_DA_PDA_CharacterSelectionData_CMC/Mover</i>.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdna.artstation.com/p/assets/images/images/098/070/436/large/wraithcg-screenshot-2026-04-12-105844.jpg?1776058988",
+                            "align": "full",
+                            "caption": "Character Setup Details"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>Open the newly created child character class.</li>",
+                                "<li>Select the <i>UEFN</i> mesh component in the Components Panel.</li>",
+                                "<li>Assign your required skeletal mesh asset in the Properties Panel.</li>",
+                                "<li>Select the <i>ABP_GenericRetarget</i> as the anim blueprint class.</li>",
+                                "<li>In the Tags section, assign a unique tag carefully.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "header",
+                            "value": "ABP_GenericRetarget Setup"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdnb.artstation.com/p/assets/images/images/098/072/011/large/wraithcg-screenshot-2026-04-13-123008.jpg?1776064418",
+                            "align": "full",
+                            "caption": "ABP_GenericRetarget"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdna.artstation.com/p/assets/images/images/098/072/014/large/wraithcg-screenshot-2026-04-13-123027.jpg?1776064424",
+                            "align": "right",
+                            "caption": "IKRetarget Example"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>Prepare an IKRetargeter for your character.</li>",
+                                "<li>Make sure the UEFN character skeleton is used as Source and your character mesh should be Target asset.</li>",
+                                "<li>Select the IKMap variable in the ABP_GenericRetarget.</li>",
+                                "<li>In the details panel, add a new element in the map.</li>",
+                                "<li>Use the same tag that you previously assigned the UEFN component as Key. Assign the newly created IKRetargeter as Value.</li>",
+                                "<li>Click Compile then save.</li>",
+                                "</ul>"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Character Customization System",
+                    "content": [
+                        {
+                            "type": "header",
+                            "value": "System Overview"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdna.artstation.com/p/assets/images/images/095/793/622/large/wraithcg-screenshot-2026-01-26-194805.jpg?1769535319",
+                            "align": "right",
+                            "caption": "E_AttachmentPoints"
+                        },
+                        {
+                            "type": "text",
+                            "value": "You can add/rename categories by modifying the enumeration <i>E_AttachmentPoints</i> in <i>SideScroller > Components > Customization > Enumeration</i>."
+                        },
+                        {
+                            "type": "text",
+                            "value": "Customization data is fetched from the current character's data asset (<i>DA_PDA_CD_xyz</i>) which contains per-character selection and customization data. In this project, all characters must inherit <b>CBP_SandboxCharacter</b> to preserve running logic."
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>If you have setup your character class the right way then continue else refer to previous section for more info on Adding New Characters.</li>",
+                                "<li>Open your character's skeletal mesh.</li>",
+                                "<li>Setup sockets on your character skeleton.</li>",
+                                "<li>If you're using skeletal meshes such as clothing items, make sure they are rigged to the same character skeleton and properly weighted.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "tip",
+                            "value": "You can consider checking out how to set up sockets on your character's skeletal mesh on Youtube."
+                        },
+                        {
+                            "type": "header",
+                            "value": "Data Asset Setup"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdnb.artstation.com/p/assets/images/images/095/627/677/large/wraithcg-screenshot-2026-01-22-001424.jpg?1769069424",
+                            "align": "full",
+                            "caption": "DA_PDA_CCD_xyz Details"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>Go inside <i>Components > Customization > DA</i> folder and duplicate any existing data asset. Name it DA_PDA_CCD_yourCharacter.</li>",
+                                "<li>Open the data asset and click on the trash icon to empty the AttachmentData.</li>",
+                                "<li>Click the plus icon to add a new element in the map.</li>",
+                                "<li>The default value will be none. Click on it and select your desired category - Face, Torso, Legs or Shoes.</li>",
+                                "<li>Expand the section and click on plus icon to add items in that category and fill appropriate data.</li>",
+                                "<ul>",
+                                "<li><b>isSkeletalMesh: </b> Determines if or not the item to be attached to the character is a skeletal mesh or a static mesh.</li>",
+                                "<li><b>SkeletalMesh: </b> If this item is a skeletal mesh, i.e. <i>isSkeletalMesh</i> is set to true, then select your desired mesh.</li>",
+                                "<li><b>AnimBPSkeletalMesh: </b> If this skeletal mesh has its own animation blueprint, then select it here or leave it empty.</li>",
+                                "<li><b>UseMasterPose: </b> Set this to true if you want this item to follow and character's animation data like clothing assets, else leave it false.</li>",
+                                "<li><b>StaticMesh: </b> Select your static mesh asset if this item is not a skeletal mesh.</li>",
+                                "<li><b>AttachmentCategory: </b> Select the category of this item. This category should be carefully set. The category of the map is used by the widget screen but the inside category is used by the player character.</li>",
+                                "<li><b>SocketName: </b> The socket to which this item will be attached. If <i>UseMasterPose</i> is set to true, then leave it None.</li>",
+                                "<li><b>ItemDescription: </b> This field can be used to write about the item's lore, defining features or properties.</li>",
+                                "</li>",
+                                "</ul>"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Environment Creation Tool",
+                    "content": [
+                        {
+                            "type": "header",
+                            "value": "Environment Creation Tool"
+                        },
+                        {
+                            "type": "text",
+                            "value": "This is a blueprint that can spawn static and skeletal meshes and blueprint actors based on specified spawn rules with randomization options."
+                        },
+                        {
+                            "type": "header",
+                            "value": "Overview of Environment Creation Tool Blueprint"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdna.artstation.com/p/assets/images/images/095/627/680/large/wraithcg-screenshot-2026-01-22-001528.jpg?1769069427",
+                            "align": "full",
+                            "caption": "BP_EnvironmentBase"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<b>Properties Configuration: </b>",
+                                "<ul>",
+                                "<li><b>AutoUpdatePropsData: </b>This can be used if you do not want to update the blueprint after every minor update.</li>",
+                                "<li><b>ShowFloor: </b>This can be used to hide the default floor included with the environment. Hiding also turns off its collision properties and vice versa.</li>",
+                                "<li><b>FloorScaleVec: </b>This can be used to scale the default floor in any of the directions.</li>",
+                                "<li><b>StaticPropsData: </b>This is used to populate the environment with static meshes. Instanced Static Meshes are used for optimization purposes.</li>",
+                                "<li><b>SkeletalPropsData: </b>This is used to populate the environment with skeletal meshes. This does not supports instancing, as a result, only one component can be spawned per array element.</li>",
+                                "<li><b>BPPropsData: </b>This is used to populate the environment with blueprint actors. Though this does not supports instancing, you can still array these props.</li>",
+                                "</ul>"
+                            ]
+                        }
+                    ],
+                    "subsections": [
+                        {
+                            "title": "Static Mesh Props",
+                            "content": [
+                                {
+                                    "type": "header",
+                                    "value": "Static Props Data Configuration"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdna.artstation.com/p/assets/images/images/095/627/684/large/wraithcg-screenshot-2026-01-22-001623.jpg?1769069434",
+                                    "align": "full",
+                                    "caption": "Static Props Structure"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "<ul>",
+                                        "<li><b>Transform:</b> This is used the as the base transform of the ISM component which will then spawn static meshes relative to it.</li>",
+                                        "<li><b>StaticMeshAsset:</b> This array contains the static mesh assets any of which can be used at a given moment.</li>",
+                                        "<li><b>RandomAsset:</b> This boolean toggles whether or not to use a random static mesh from the array.</li>",
+                                        "<li><b>AssetIdx:</b> If <i>RandomAsset</i> is false, then element at this index will be used. In case, this is an invalid index, then random static mesh will be used.</li>",
+                                        "<li><b>Count:</b> This determines the number of instances of the mesh in X, Y and Z directions respectively. Total number of instances spawned will be equal to the product these three values.</li>",
+                                        "<li><b>Offset:</b> This is used to add uniform gap between the instances in X, Y and Z directions respectively.</li>",
+                                        "<li><b>InstanceTransform:</b> This is useful for modifying the transforms of any instance.</li>",
+                                        "<li><b>RemoveInstances:</b> This is used for removing some of the instances of the static mesh.</li>",
+                                        "<li><b>RandomDeletionCount:</b> Based on this count, some of the instances will be deleted.</li>",
+                                        "<li><b>RandomSeed:</b> This boolean determines whether or not to use random seed for randomizing spawned instances.</li>",
+                                        "<li><b>SeedValue:</b> If <i>RandomSeed</i> is false, then the instances are transformed based on this seed value.</li>",
+                                        "<li><b>TransformationMin & MaxRanges:</b> This determines the maxium and minium extent of random transforms of the spawned instances.</li>",
+                                        "<li><b>MaterialData:</b> This is useful for randomizing the materials of the static meshes based on material indices.</li>",
+                                        "<li><b>CollisionEnabled:</b> This is useful if you want the player to collide with these instances.</li>",
+                                        "</ul>"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Skeletal Mesh Props",
+                            "content": [
+                                {
+                                    "type": "header",
+                                    "value": "Skeletal Props Data Configuration"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdna.artstation.com/p/assets/images/images/095/627/688/large/wraithcg-screenshot-2026-01-22-001659.jpg?1769069437",
+                                    "align": "full",
+                                    "caption": "Skeletal Props Structure"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "<ul>",
+                                        "<li><b>Transform:</b> This is used the as the base transform of the ISM component which will then spawn static meshes relative to it.</li>",
+                                        "<li><b>SkeletalMeshAsset:</b> This array contains the skeletal mesh assets any of which can be used at a given moment.</li>",
+                                        "<li><b>RandomAsset:</b> This boolean toggles whether or not to use a random static mesh from the array.</li>",
+                                        "<li><b>AssetIdx:</b> If <i>RandomAsset</i> is false, then element at this index will be used. In case, this is an invalid index, then random static mesh will be used.</li>",
+                                        "<li><b>isAnimated:</b> This determines whether or not to animate the skeletal mesh when player is around.</li>",
+                                        "<li><b>MaterialData:</b> This is useful for randomizing the materials of the mesh based on material indices.</li>",
+                                        "<li><b>Animations:</b> List of animations from which any one can be looped repeatedly.</li>",
+                                        "<li><b>RandomSeed:</b> This boolean determines whether or not to use random seed for randomizing data for this skeletal mesh asset.</li>",
+                                        "<li><b>SeedValue:</b> If <i>RandomSeed</i> is false, then the randomizations occur based on this seed value.</li>",
+                                        "<li><b>TransformationMin & MaxRanges:</b> This determines the maxium and minium extent of random transforms of the spawned instances.</li>",
+                                        "<li><b>CollisionEnabled:</b> This is useful if you want the player to collide with this mesh.</li>",
+                                        "</ul>"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": "BP Prop Actors",
+                            "content": [
+                                {
+                                    "type": "header",
+                                    "value": "BP Prop Actors Data Configuration"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdna.artstation.com/p/assets/images/images/098/070/460/large/wraithcg-screenshot-2026-04-13-102207.jpg?1776059032",
+                                    "align": "full",
+                                    "caption": "BP Props Structure"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "<ul>",
+                                        "<li><b>UseDefaultTransform:</b> Toggle this if you wish to keep the base transforms of the original BP otherwise, it may be scaled relative to environment BP default scene root.</li>",
+                                        "<li><b>Transform:</b> This is used the as the base transform of the ISM component which will then spawn static meshes relative to it.</li>",
+                                        "<li><b>BPAsset:</b> This array contains the BP assets any of which can be used at a given moment. These are of type BP_DecorData but you can change it if you have other assets, otherwise create a child class of BP_DecorData and implement your custom BP logic.</li>",
+                                        "<li><b>RandomAsset:</b> This boolean toggles whether or not to use a random static mesh from the array.</li>",
+                                        "<li><b>AssetIdx:</b> If <i>RandomAsset</i> is false, then element at this index will be used. In case, this is an invalid index, then random static mesh will be used.</li>",
+                                        "<li><b>Count:</b> This determines the number of instances of the mesh in X, Y and Z directions respectively. Total number of instances spawned will be equal to the product these three values.</li>",
+                                        "<li><b>Offset:</b> This is used to add uniform gap between the instances in X, Y and Z directions respectively.</li>",
+                                        "<li><b>InstanceTransform:</b> This is useful for modifying the transforms of any instance.</li>",
+                                        "<li><b>RemoveInstances:</b> This is used for removing some of the instances of the static mesh.</li>",
+                                        "<li><b>RandomSeed:</b> This boolean determines whether or not to use random seed for randomizing spawned instances.</li>",
+                                        "<li><b>SeedValue:</b> If <i>RandomSeed</i> is false, then the instances are transformed based on this seed value.</li>",
+                                        "<li><b>TransformationMin & MaxRanges:</b> This determines the maxium and minium extent of random transforms of the spawned instances.</li>",
+                                        "<li><b>UniformScaleMultiplier:</b> Uses defined random scale multiplier from <b>MaxUniformScale</b> & <b>MinUniformScale</b> instead of scaling each axis individually.",
+                                        "</ul>"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Decor Data",
+                            "content": [
+                                {
+                                    "type": "header",
+                                    "value": "BP_DecorData"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdna.artstation.com/p/assets/images/images/095/839/350/large/wraithcg-screenshot-2026-01-28-093230.jpg?1769648122",
+                                    "align": "full",
+                                    "caption": "BP_DecorData"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "<ul>",
+                                        "<li>These are custom blueprints that contain custom logic/assets etc;</li>",
+                                        "<li>These are spawned in the environment for increasing immersion.</li>",
+                                        "<i> e.g. flickering lights, randomized street sign spawner, etc;",
+                                        "</ul>"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Interaction System",
+                    "content": [
+                        {
+                            "type": "header",
+                            "value": "Interaction System"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdnb.artstation.com/p/assets/images/images/098/070/457/large/wraithcg-screenshot-2026-04-12-111856.jpg?1776059027",
+                            "align": "full",
+                            "caption": "BP_InteractiveActorBase"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>BP_InteractiveActorBase is the master class for handling all types of interactions.</li>",
+                                "<li>It has been decomposed into multiple subclasses for various actions - Dialogue, Action & Switch Based Interaction.</li>",
+                                "<li>A few examples of said interaction types are available in respective folders..</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "header",
+                            "value": "Properties"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li><b>InteractionRadius:</b> Radius of the interaction sphere.</li>",
+                                "<li><b>BeginActive:</b> If true, the interaction will be active as soon as game is launched. Be careful while using :)</li>",
+                                "<li><b>ActorName:</b> Used for displaying in interaction widgets.</li>",
+                                "<li><b>ActiveInteractionText:</b> Text to display for prompting interaction when the actor is inactive.</li>",
+                                "<li><b>DeactivateInteractionText:</b> Text to display for prompting interaction when the actor is active.</li>",
+                                "<li><b>UseActorNameInInteractionText:</b> If true, the actor name will be appended at the end of the interaction prompt.</li>",
+                                "<li><b>AutoActivateOnStartOverlap:</b> Activate interaction as soon as player overlaps with the interaction sphere.</li>",
+                                "<li><b>AutoDeactivateOnEndOverlap:</b> Deactivate interaction as soon as player moves out of the interaction sphere. Useful only if the interaction is non-blocking in nature.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdna.artstation.com/p/assets/images/images/099/561/450/large/wraithcg-screenshot-2026-06-01-112246.jpg?1780325518",
+                            "align": "full",
+                            "caption": "Interaction Actor Types"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "There are 3 types of Interaction Actors -",
+                                "<ul>",
+                                "<li><b>BP_ActionInteractionBase</b> is for those interactions where the activity is synced between player and interactable.</li>",
+                                "<li><b>BP_DialogueInteractionBase</b> is for dialogue based interactions. It is limited to on-screen 2-choices based texts.</li>",
+                                "<li><b>BP_SwitchInteractionBase</b> is for simplest toggle interactions.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "tip",
+                            "value": [
+                                "<ul>",
+                                "<li>Add any element that you wish to highlight to indicate interactivity with the actor using <b>AddElementsToHighlight</b> function as shown above.</li>",
+                                "<li>Then implement the <b>ActivateInteractionActor</b> and <b>DeactivateInteractionActor</b> according to your actor's interactivity requirements.</li>",
+                                "<li>Use <b>GetActiveStatus</b> for getting the current state of the interaction actor.</li>",
+                                "<li>Use <b>Set Active Status</b> to change the state of the interactive actor.</li>",
+                                "<li>Always check the active status of the actor before activating and deactivating the actor to avoid interaction spamming. See above for details.</li>",
+                                "<li>See examples for more details.</li>",
+                                "</ul>"
+                            ]
+                        }
+                    ],
+                    "subsections": [
+                        {
+                            "title": "Action Based Interaction",
+                            "content": [
+                                {
+                                    "type": "header",
+                                    "value": "BP_ActionInteractionBase"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdnb.artstation.com/p/assets/images/images/099/561/451/large/wraithcg-screenshot-2026-06-01-112253.jpg?1780325522",
+                                    "align": "full",
+                                    "caption": "BP_ActionInteractionBase Examples"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "<ul>",
+                                        "<li><b>Interactive Elevator</b> Simple elevator that can be used to move player from one place to another.",
+                                        "<ul>",
+                                        "<li>The horizontal movement on the elevator sometimes causes the player to jitter because it tries to strictly fix itself on the spline path.</li>",
+                                        "<li>The vertical movement is fine but the player slightly sinks into the platform if the movement is very fast.</li>",
+                                        "<li>Other than these, the elevator is pretty customizable.</li>",
+                                        "<li>You can set the end location, time duration, movement type and wait type of the elevator on top of base interactivity features.</li></ul>",
+                                        "</li>",
+                                        "<li><b>Wearable Item </b> This can be used for any item attachment to the player character skeleton.",
+                                        "<ul>",
+                                        "<li>These items are not saved as part of character customizations.</li>",
+                                        "<li>Once attached, these items cannot be removed from player character.</li>",
+                                        "</li>",
+                                        "</ul>"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Dialogue Based Interaction",
+                            "content": [
+                                {
+                                    "type": "header",
+                                    "value": "BP_DialogueInteractionBase"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdna.artstation.com/p/assets/images/images/099/561/454/large/wraithcg-screenshot-2026-06-01-112258.jpg?1780325526",
+                                    "align": "full",
+                                    "caption": "BP_DialogueInteractionBase Examples"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "<ul>",
+                                        "<li><b>NPC_01/02</b> These are example interactive actors. This can be extended to non-human npc's such as interactive computers/kiosks also.</li>",
+                                        "<li>ABP's are required to play montages on a skeletal mesh only.</li>",
+                                        "<li><b>Idle Montages:</b> Played on NPC skeleton when the player is not interacting with the NPC. A random animation is selected and played.</li>",
+                                        "<li><b>Dialogue Montages:</b> Played on NPC when the player interacts. Eveytime the player selects any dialogue, a new random montage from the dialogue montages is played.</li>",
+                                        "<li><b>Interaction Data:</b> An array of interaction data. It is executed based on the choosen dialogue option, always starting from index 0.",
+                                        "<ul>",
+                                        "<li><b>InteractionText:</b> This text represents dialogue of the NPC. <i>ActorName</i> is automatically appended at the end of the <i>InteractionTet</i>.</li>",
+                                        "<li><b>AutoHide:</b> If true, then no options are displayed. Based on <i>AutoHideTimer</i> duration, the interaction is stopped automatically.</li>",
+                                        "<li><b>OptionButtonText1:</b> Atleast one option is always available. And atmost there can be 2 options only.</li>",
+                                        "<li><b>EndOnOption1:</b> If true, then the interaction is stopped when the player chooses Otion 1.</li>",
+                                        "<li><b>ReplyDataForOption1:</b> Enter the index of the interaction data in this array, which presents the dialogue and choice based on Option 1. Required if <i>EndOnOption1</i> is false.</li>",
+                                        "<li><b>Has2ndOption:</b> Whether or not to draw button for 2nd Option.</li>",
+                                        "<li><b>OptionButtonText2</b>, <b>EndOnOption2</b> and <b>ReplyDataForOption2:</b> These serve same functions as Option 1.</li>",
+                                        "</ul></li>",
+                                        "</ul>"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Switch Based Interaction",
+                            "content": [
+                                {
+                                    "type": "header",
+                                    "value": "BP_SwitchInteractionBase"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdnb.artstation.com/p/assets/images/images/099/561/457/large/wraithcg-screenshot-2026-06-01-112303.jpg?1780325531",
+                                    "align": "full",
+                                    "caption": "BP_SwitchInteractionBase Examples"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "<ul>",
+                                        "<li>These are simple interactive actors.</li>",
+                                        "<li>Example actors such as light poles, doors etc; with usage examples are provided in the showcase level.</li>",
+                                        "</ul>"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "PathSpline System",
+                    "content": [
+                        {
+                            "type": "header",
+                            "value": "System Overview"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdnb.artstation.com/p/assets/images/images/099/347/193/large/wraithcg-screenshot-2026-05-25-145146.jpg?1779705724",
+                            "align": "right",
+                            "caption": "PathSpline Component"
+                        },
+                        {
+                            "type": "text",
+                            "value": "Atleast one <b>BP_PathSpline</b> actor in the level with <b> actorTag - <i>Start</i></b>. When the game will start, the player pawn will be snapped onto this tagged spline relative to its location, else the player will be stuck on origin and errors will be thrown."
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li><b>BP_ChangeSpline</b> is used to switch between two splines.</li>",
+                                "<li>It is destroyed once the player has interacted.</li>",
+                                "<li>It can be useful for branching story paths where the character won't be able to go back. If you want, you can easily modify it to allow 2 way spline switch :) </li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "header",
+                            "value": "Teleporters"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>These are present in GASP by default.</li>",
+                                "<li>They can be used to further enhance the gameplay.</li>",
+                                "<li><b>Teleporter_Sender & Destination</b> are used together to move player from one part of map to another.</li>",
+                                "<li><b>Teleporter_Level</b> Can be used to change levels.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "tip",
+                            "value": [
+                                "<ul>",
+                                "<li>Make sure the Teleporter_Destination point also lies on same splinePath as the Teleporter_Sender splinePath otherwise the player will be snapped to a location relative to previous splinePath.</li>",
+                                "<li>If they are located on different splinePaths, then add a BP_ChangeSplinePath at the same location as Teleporter_Destination. In the properties, set AutoActivateOnOverlap to true.</li>",
+                                "</ul>"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "AimHandler Component",
+                    "content": [
+                        {
+                            "type": "header",
+                            "value": "System Overview"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdna.artstation.com/p/assets/images/images/099/638/080/large/wraithcg-screenshot-2026-06-03-155934.jpg?1780527737",
+                            "caption" : "BPC_AimHandlerComponent",
+                            "align":"full"
+                        },
+                        {
+                            "type": "text",
+                            "value": "This component just calculates aim rotation based on mouse pointer location only when the player's input state is in aiming state."
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>You can read the aim rotation using the interface function <b>Get_AimHandlingData</b>.</li>",
+                                "<li><b>RotationMode</b> - Mesh and Actor defines what to rotate during aiming. Actor rotations are final while mesh rotations are temporary. The character mesh reverts to original direction once aiming is stopped.</li>",
+                                "<li><b>Maximum & Minimum PitchAimingAngle</b> - The range in which the player is allowed to aim when idle.</li>",
+                                "</ul>"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Combat Component",
+                    "content": [
+                        {
+                            "type": "header",
+                            "value": "System Overview"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdna.artstation.com/p/assets/images/images/099/347/178/large/wraithcg-screenshot-2026-05-25-143909.jpg?1779705704",
+                            "caption": "BPC_CombatComponent",
+                            "align": "full"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>This component is responsible for managing combat-related data and logic.</li>",
+                                "<li>It is not added to player character but the weapon actor. Then using interface function <b>PerformAttackEvent</b> the combat logic is executed.</li>",
+                                "<li>The combat system is based on - <b><a href=\"https://youtube.com/playlist?list=PL7fuubrGZdmxIbcuDAGU8nFT8F-FJOSSm&si=hwDr47RSi1JYJ9nf\">YuKo Millennia's Unreal Engine 5 - Hack and Slash Tutorial Series</a></b></li>",
+                                "<li>The combat system in the template uses only Part 1 of the series. If you like, you are free to extend the combat with other tutorials from the series. As far as the template is concerned, I have some other plans for the combat system.</li>",
+                                "<li>As a result of this, the combat data asset uses a struct that only contains a variable for anim montage only. It will be expanded in upcoming versions.</li>",
+                                "<li>For setting up your combat montages, you are advised to watch this tutorial from the series - <b><a href=\"https://youtu.be/A9aow7qE71k?si=LnNNrmsKIlWDnRN_\">Unreal Engine Hack & Slash Tutorial Part 2 | Light Attack Combo & Finite State Machine</a></b></li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "header",
+                            "value": "Properties"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li><b>EndOffset:</b> Offset the trace end location from player.</li>",
+                                "<li><b>ForwardOffset:</b> Offset the trace start location from player.</li>",
+                                "<li><b>TraceRadius:</b> Radius for tracing character.</li>",
+                                "<li><b>TraceTimer:</b> The time interval for the looping timer that runs when attack montage is playing.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "note",
+                            "value": "In this project, this component is not added to any character but the weapon actor. As a result, the component properties are also present in Melee Data assets. <i>But this combat system is highly susceptible to changes in the next update.</i>"
+                        }
+                    ]
+                },
+                {
+                    "title": "DeathBox Component",
+                    "content": [
+                        {
+                            "type": "header",
+                            "value": "System Overview"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdnb.artstation.com/p/assets/images/images/099/638/107/large/wraithcg-screenshot-2026-06-03-160158.jpg?1780527806",
+                            "caption": "BP_DeathBoxComponent",
+                            "align": "full"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>This actor just triggers Death system.</li>",
+                                "<li>When the player overlaps, the <b>AddWidgetToScreen</b> interface function tells the game mode to create death screen widget.</li>",
+                                "<li>This widget uses radgoll interface and tells the player pawn to radgoll.</li>",
+                                "<li>If the <i>RagdollOnDeath</i> in the BPC_PlayerAttributesComponent properties is set to true, then the player ragdolls.</li>",
+                                "<li>You can change the niagara system to your liking to indicate a dangerous trigger.</li>",
+                                "</ul>"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Throw/Explosive Component",
+                    "content": [
+                        {
+                            "type": "note",
+                            "value": [
+                                "<ul>",
+                                "<li>This component was much more expansive in previous build.</li>",
+                                "<li>But in this rebuilt of this project, some things have been removed.</li>",
+                                "<li>One of them being changing the speed of throw projectile.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "header",
+                            "value": "System Overview"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdnb.artstation.com/p/assets/images/images/099/347/241/large/wraithcg-screenshot-2026-05-25-153512.jpg?1779705800",
+                            "caption": "BPC_ExplosionComponent/BPC_ThrowComoponent",
+                            "align": "full"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>This component is responsible for allowing the player to throw grenades.</li>",
+                                "<li>The <b>BP_ExplosiveBase</b> actor is the actor that is spawned in the scene.</li>",
+                                "<li>The properties of the explosive actor can be customised using data assets of type <b>PDA_ExplosiveDataAssetBase</b>.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "header",
+                            "value": "Data Asset Properties"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li><b>ThrowableMesh:</b> The static mesh that is visible in the scene.</li>",
+                                "<li><b>FirePhysicsImpulse:</b> When the actor explodes, whether or not a physics impulse is spawned in the scene.</li>",
+                                "<li><b>CameraShake:</b> Assign a cameraShake class to sell the intensity of explosion.</li>",
+                                "<li><b>DamageAmount:</b> Amount of damage the actors in the range of explosion receive. It is not used in present state.</li>",
+                                "<li><b>FallOff:</b> How much damage the actors receive based on their distance to the explosion.</li>",
+                                "<li><b>DestroyDelay:</b> Once hit, then how much time to wait before finally exploding.</li>",
+                                "<li><b>ActivationDelay:</b> A small delay required for barrels and other destructible explosives because when the scene starts, the actor drops on ground. This fires the OnHitEvent and makes the actor explode.</li>",
+                                "<li><b>RandomRotation:</b> Whether the not the throwable mesh should rotate randomly, useful if it is being thrown.</li>",
+                                "<li><b>RotationRate:</b> The rate of rotation, usually between 300 to 800.</li>",
+                                "<li><b>ImpactSound:</b> The sound to play during explosion.</li>",
+                                "<li><b>ImpactSystem:</b> The NiagaraFx to spawn for explosion.</li>",
+                                "<li><b>FieldImpulse:</b> If a physics impulse is spawned, then the strength of the impulse.</li>",
+                                "<li><b>FieldRadius:</b> The radius of physics impulse field.</li>",
+                                "<li><b>ImpactVolumeMultiplier:</b> The volume of the impact sound.</li>",
+                                "<li><b>InnerShakeRadius:</b> The inner shake radius for camera shake.</li>",
+                                "<li><b>OuterShakeRadius:</b> The outer shake radius for camera shake.</li>",
+                                "<li><b>UseSphereCollision:</b> Decides if a sphere collider is used for overlap based triggers.</li>",
+                                "<li><b>SphereRadius:</b> Radius of the sphere collider.</li>",
+                                "<li><b>ExplodeOnBeginOverlap:</b> If true, the explosive will explode when beginning overlap, else ending overlap if not exploded through onHit event already. Useful for mines</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "header",
+                            "value": "Anim Notify & States"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li><b>ANS_ThrowMethod:</b> Add this in you grenade throw animations. During the window of this notify, the character slow down time a little to allow the player to aim the throw. The grenade is thrown once the notify duration is complete.</li>",
+                                "<li>The throw animation must be in <i>Default.UpperBody</i> slot so the player can aim & throw when doing anything unless blocked otherwise.</li>",
+                                "<li>Some animations might require extra handling such as disabling and enabling LeftHandIK at the start and end of throw animation respectively.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "header",
+                            "value": "Component Properties"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdnb.artstation.com/p/assets/images/images/099/638/103/large/wraithcg-screenshot-2026-06-03-160038.jpg?1780527797",
+                            "caption": "BPC_ExplosionComponent/BPC_ThrowComoponent",
+                            "align": "right"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li><b>VerticalScaleMultiplier:</b> It determines how fast the vertical component of the throw velocity changes with change in the position of mouse pointer location.</li>",
+                                "<li><b>HorizontalScaleMultiplier:</b> It determines how fast the Horizontal component of the throw velocity changes with change in the position of mouse pointer location.</li>",
+                                "<li><b>VelocityMultiplier:</b> It determines the intensity of the throw.</li>",
+                                "<li><b>CurrentThrowable:</b> Assign a throwable DA prepared earlier.</li>",
+                                "<li><b>OffsetPosition:</b> Offset the mouse pointer centre, the point after which the player character rotates to face opposite direction.</li>",
+                                "<li><b>Max & Min ThrowRange:</b> Determines the extent of throw on either side of the player. The grenade can be thrown horizontally in both directions (-1 to 1) and vertically in only top direction (0 to 1).</li>",
+                                "<li><b>DelayBeforeThrowingAgain:</b> Determines the throw rate. Player cannot throw anything again until the cooldown is complete.</li>",
+                                "<li><b>DefaultThrowAnim:</b> The default item throw montage to use for the character. When any weapon is equipped, the respective weapon's DA determines the montage to play. Make sure to add <i>ANS_ThrowMethod</i> in the montage.</li>",
+                                "<li><b>EffectType:</b> Determines the smoothness of the projectile path predictor- <i>Snappy, Smooth, Smoother</i>.</li>",
+                                "<li><b>Mesh:</b> Assign the static mesh that is used for aiming.</li>",
+                                "<li><b>Material:</b> Assign the material for the static mesh that is used for aiming.</li>",
+                                "<li><b>TracesCount:</b> Number of static meshes to spawn (ISM) for showing aiming trajectory.</li>",
+                                "<li><b>SizeCurve:</b> Assign the curve asset that determines the size of the spawned static meshes across the trajectory.</li>",
+                                "</ul>"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Status Effects Component",
+                    "content": [
+                        {
+                            "type": "header",
+                            "value": "System Overview"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdna.artstation.com/p/assets/images/images/099/347/196/large/wraithcg-screenshot-2026-05-25-145153.jpg?1779705728",
+                            "caption": "Status Effects",
+                            "align": "full"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>These are from Niagara Example Project by EpicGames. A demo is available in test maps. At present these are for visual flair only.</li>",
+                                "<li>These can be used to denote any status effect using corresponding material overlay on the player character skeleton such as poison, electrical, fire, cold, etc;</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>If your player blueprint uses single skeletal mesh, then skip the steps given below. Simply add new characters as explained in <i>Character Selection System</i>.</li>",
+                                "<li>If your player blueprint uses more than one skeletal mesh, for example, a metahuman character has separate skeletal meshes for various body parts, and you wish that they should be highlighted when any status effect is active, then -",
+                                "<ul>",
+                                "<li>Open your player blueprint. Make sure it is a child class of either <i>CBP_SideScroller_PlayerBase_Mover</i> or <i>CBP_SideScroller_PlayerBase_CMC</i>.</li>",
+                                "<li>In the <i>MyBlueprint</i> tab, go to <i>Interfaces</i> section and find <b>GetStatusMesh</b> function.</li>",
+                                "<li>Double-click on it to override its implementation.</li>",
+                                "<li>Right-click on the function node and select <i>AddCallToParentFunction</i>.</li>",
+                                "<li>Now, re-implement the function as shown below. Add your skeletal meshes in the player array.</li>",
+                                "</ul></li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdnb.artstation.com/p/assets/images/images/100/267/293/large/wraithcg-screenshot-2026-06-24-184849.jpg?1782359300",
+                            "caption": "Configuring Player Blueprint",
+                            "align": "full"
+                        }
+                    ]
+                },
+                {
+                    "title": "Weapon Component",
+                    "content": [
+                        {
+                            "type": "header",
+                            "value": "System Overview"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdnb.artstation.com/p/assets/images/images/099/638/117/large/wraithcg-screenshot-2026-06-03-160412.jpg?1780527823",
+                            "caption": "Weapon System",
+                            "align": "full"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li><b>BP_BaseWeapon</b> is the base weapon class. All Ranged and Melee weapons extend this class.</li>",
+                                "<li><b>BP_DroppedWeaponMesh</b> is just a static mesh actor. Empty weapons are dropped in the level as static meshes.</li>",
+                                "<li><b>BPC_WeaponComponent</b> is responsible for the management of current weapon data and inventory.</li>",
+                                "<li><b>PDA_MasterWeaponData</b> is the base data asset for both melee and ranged weapons.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "header",
+                            "value": "Anim Notify & States"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li><b>AN_SetLHIKStatus</b> is used to enable LeftHandIK on weapons. This is only effective if in the respective weapon data asset, <i>TwoHandedWeapon</i> & <i>PlayAnimationOnLeftHand</i> are set to true.</li>",
+                                "<li><b>AN_SpawnWeapon</b> is used inside the equip weapon montages. The weapon component already knows which weapon to spawn. Just adding this notify at the right position in the montage will spawn the weapon.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdna.artstation.com/p/assets/images/images/099/609/308/large/wraithcg-screenshot-2026-06-01-102430.jpg?1780453952",
+                            "caption": "Set LHIK Status Example- Disable on Reload Start and Enable on Reload End",
+                            "align": "full"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdnb.artstation.com/p/assets/images/images/099/609/309/large/wraithcg-screenshot-2026-06-01-102439.jpg?1780453956",
+                            "caption": "Slot Node for animations such as - Shooting, Reloading, Tossing Grenade, Equipping Weapons, etc;",
+                            "align": "full"
+                        },
+                        {
+                            "type": "image",
+                            "src": "https://cdnb.artstation.com/p/assets/images/images/099/638/057/large/wraithcg-screenshot-2026-06-03-160815.jpg?1780527688",
+                            "caption": "ANS_SpawnWeapon Example",
+                            "align": "full"
+                        },
+                        {
+                            "type": "header",
+                            "value": "Properties"
+                        },
+                        {
+                            "type":"image",
+                            "align":"right",
+                            "caption":"BPC_WeaponComponent Properties",
+                            "src":"https://cdna.artstation.com/p/assets/images/images/099/638/104/large/wraithcg-screenshot-2026-06-03-160112.jpg?1780527800"
+                        },
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li><b>UnarmedActionData:</b> Assign Unarmed combat data assets to player character. The game starts with player already having these fighting styles in the inventory.</li>",
+                                "<li><b>RangedActionData:</b> Assign Ranged combat data assets to player character. The game starts with player already having these weapons in the inventory.</li>",
+                                "<li><b>MeleeActionData:</b> Assign Melee combat data assets to player character. The game starts with player already having these weapons in the inventory.</li>",
+                                "<li><b>InitialWeaponType & InitialEquipSlot:</b> Based on these, respective weapon/fighting data is attached to player on game start if the valid data is present, else Unarmed Primary fighting style is equipped.</li>",
+                                "<li><b>ImpactHitMontages & ExplosiveHitMontages:</b> Used for hit reactions on enemies based on ranged weapon type.</li>",
+                                "<li><b>isMover:</b> Set true if the movement component of the pawn is Mover.</li>",
+                                "<li><b>LogWeaponData:</b> When equipping new weapons, the entire list of weapons in all categories is printed on screen.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                            "type":"note",
+                            "value":[
+                                "<ul>",
+                                "<li>HitReaction system is susceptible to changes in later versions.</li>",
+                                "<li>Skeletal Meshes are always attached to player, while static meshes are used for level dressing.</li>",
+                                "</ul>"
+                            ]
+                        }
+                    ],
+                    "subsections": [
+                        {
+                            "title": "Melee Data Asset",
+                            "content": [
+                                {
+                                    "type": "header",
+                                    "value": "Melee Weapon Data Asset"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdna.artstation.com/p/assets/images/images/099/347/204/large/wraithcg-screenshot-2026-05-25-145438.jpg?1779705743",
+                                    "caption": "DA_MeleeWeaponData",
+                                    "align": "full"
+                                },
+                                {
+                                    "type": "note",
+                                    "value": "Some variables and categories may feel like that they should be above or below other variables. It is because the engine has arranged the categories and variables automatically."
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "<ul>",
+                                        "<li><b>MeleeAttackData:</b> Data Asset of type <i>PDA_CombatActionData</i>.</li>",
+                                        "<li><b>EndOffset:</b> Offset the trace end location from player.</li>",
+                                        "<li><b>ForwardOffset:</b> Offset the trace start location from player.</li>",
+                                        "<li><b>TraceRadius:</b> Radius for tracing character.</li>",
+                                        "<li><b>TraceTimer:</b> The time interval for the looping timer that runs when attack montage is playing.</li>",
+                                        "<li><b>Name:</b> The weapon name that appears on the UI.</li>",
+                                        "<li><b>WeaponType & EquipSlot:</b> Define the type of weapon & the slot to store it. This is to make sure that weapon data is kept in correct maps.</li>",
+                                        "<li><b>AttachSocket:</b> The main socket in player skeleton where the weapon must be attached. If there are multiple characters, then all character skeletons must have this socket.</li>",
+                                        "<li><b>HolsterSocket:</b> The socket in player skeleton where the weapons not currently in use but present in inventory are stored.</li>",
+                                        "<li><b>StaticMesh:</b> The static mesh for the weapon used in weapon interactables and dropped weapon actors.</li>",
+                                        "<li><b>SkeletalMesh:</b> The weapon skeletal mesh to attach to the player skeleton.</li>",
+                                        "<li><b>OtherAttachments:</b> These serve as extra attachments to player character, for e.g. A sword with shield, a gun with tactial helmet/vest, or twin swords. Static meshes appear when the weapon is holstered while skeletal meshes are used when weapon is equipped. Socket Names are for attachment purposes.</li>",
+                                        "<li><b>ShowMouseCursor:</b> When ranged weapons are equipped, mouse cursor visibility is helpful in aiming.</li>",
+                                        "<li><b>IsTwoHandedWeapon:</b> Determines if or not LeftHandIK Socket should be used.</li>",
+                                        "<li><b>LeftHandIKSocket:</b> The socket present in the skeletal mesh of the weapon where the left hand should be attached.</li>",
+                                        "<li><b>CanAim:</b> Decides whether or not to rotate the hands with the aim direction.</li>",
+                                        "<li><b>AimStabilisationRate:</b> The speed with which the player's hand reset to idle position when aiming state is left.</li>",
+                                        "<li><b>Min and Max AimingPitch:</b> The range within which the player can aim with this weapon.</li>",
+                                        "<li><b>EquipMontage&Sound:</b> Used for equipping weapons. If unset, then the weapons are attached directly to specified sockets. It must be set to <i>Partial</i> slot to play it on UpperBody only. The sound, if set to valid asset, also plays.</li>",
+                                        "<li><b>UnequipMontage&Sound:</b> To be used similarly as EquipMontage&Sound. <i> It remains unused though. </i></li>",
+                                        "<li><b>Idle & CrouchIdleAnimSeq:</b> These are used for idling poses and blending into other actions. The blending might not be perfect and you may need to change weights according to your requirements in the animation blueprints.</li>",
+                                        "<li><b>ProjectileThrowAnim:</b> The montage to play for throwing grenades when this weapon is equipped. It must be set to <i>Partial</i> slot to play it on UpperBody only.</li>",
+                                        "<li><b>PlayAnimOnLeftHand:</b> Determines whether or not the idle animation blending occurs on left hand or not.</li>",
+                                        "<li><b>CorrectiveRotation:</b> When weapon is spawned, then use this rotation to adjust its rotation.</li>",
+                                        "</ul>"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Ranged Data Asset",
+                            "content": [
+                                {
+                                    "type": "header",
+                                    "value": "Ranged Weapon Data Asset"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdna.artstation.com/p/assets/images/images/099/347/202/large/wraithcg-screenshot-2026-05-25-145350.jpg?1779705739",
+                                    "caption": "DA_RangedWeaponData",
+                                    "align": "full"
+                                },
+                                {
+                                    "type": "note",
+                                    "value": "Some variables and categories may feel like that they should be above or below other variables. It is because the engine has arranged the categories and variables automatically."
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "<ul>",
+                                        "<li><b>MuzzleSocket:</b> The ranged weapon socket from where the bullets will be spawned.</li>",
+                                        "<li><b>WeaponABP:</b> The anim blueprint for the weapon required to play fire and reload montages. It is just an empty ABP with DefaultSlot plugged into finalOutput.</li>",
+                                        "<li><b>Name:</b> The weapon name that appears on the UI.</li>",
+                                        "<li><b>WeaponType & EquipSlot:</b> Define the type of weapon & the slot to store it. This is to make sure that weapon data is kept in correct maps.</li>",
+                                        "<li><b>AttachSocket:</b> The main socket in player skeleton where the weapon must be attached. If there are multiple characters, then all character skeletons must have this socket.</li>",
+                                        "<li><b>HolsterSocket:</b> The socket in player skeleton where the weapons not currently in use but present in inventory are stored.</li>",
+                                        "<li><b>StaticMesh:</b> The static mesh for the weapon used in weapon interactables and dropped weapon actors.</li>",
+                                        "<li><b>SkeletalMesh:</b> The weapon skeletal mesh to attach to the player skeleton.</li>",
+                                        "<li><b>ShowMouseCursor:</b> When ranged weapons are equipped, mouse cursor visibility is helpful in aiming.</li>",
+                                        "<li><b>OtherAttachments:</b> These serve as extra attachments to player character, for e.g. A sword with shield, a gun with tactial helmet/vest, or twin swords. Static meshes appear when the weapon is holstered while skeletal meshes are used when weapon is equipped. Socket Names are for attachment purposes.</li>",
+                                        "<li><b>IsTwoHandedWeapon:</b> Determines if or not LeftHandIK Socket should be used.</li>",
+                                        "<li><b>LeftHandIKSocket:</b> The socket present in the skeletal mesh of the weapon where the left hand should be attached.</li>",
+                                        "<li><b>CanAim:</b> Decides whether or not to rotate the hands with the aim direction.</li>",
+                                        "<li><b>SprintAiming:</b> Decides whether or not the character can aim while sprinting. False recommended.</li>",
+                                        "<li><b>SlideAiming:</b> Decides whether or not the character aim while sliding.</li>",
+                                        "<li><b>CanCrouch:</b> Decides whether or not the character can crouch while holding this weapon. Not that this also disables sliding for Mover Characters if false.</li>",
+                                        "<li><b>AimStabilisationRate:</b> The speed with which the player's hand reset to idle position when aiming state is left.</li>",
+                                        "<li><b>Min and Max AimingPitch:</b> The range within which the player can aim with this weapon.</li>",
+                                        "<li><b>Weapon_Fire&ReloadMontages:</b> The montages based on the respective weapon skeletal mesh that are played during required action.</li>",
+                                        "<li><b>Character_Fire&ReloadMontages:</b> The montages that are played in synchronisation on the player pawn based on UEFN character skeleton. Make sure to disable left hand Ik at the start and re-enable it at the end of the reload montage by using <i>Set_LHIKStatus</i> anim notify and toggling EnableLHIK in the default properties. It must be set to <i>Partial</i> slot to play it on UpperBody only.</li>",
+                                        "<li><b>Firing&ReloadingSound:</b> Played during respective actions.</li>",
+                                        "<li><b>EquipMontage&Sound:</b> Used for equipping weapons. If unset, then the weapons are attached directly to specified sockets. It must be set to <i>Partial</i> slot to play it on UpperBody only. The sound, if set to valid asset, also plays.</li>",
+                                        "<li><b>UnequipMontage&Sound:</b> To be used similarly as EquipMontage&Sound. <i> It remains unused though. </i></li>",
+                                        "<li><b>Idle & CrouchIdleAnimSeq:</b> These are used for idling poses and blending into other actions. The blending might not be perfect and you may need to change weights according to your requirements in the animation blueprints.</li>",
+                                        "<li><b>Sprint Pose AnimSeq:</b> This a sprint anim overlay added if the character is sprinting and SprintAiming is false.</li>",
+                                        "<li><b>ProjectileThrowAnim:</b> The montage to play for throwing grenades when this weapon is equipped. It must be set to <i>Partial</i> slot to play it on UpperBody only.</li>",
+                                        "<li><b>PlayAnimOnLeftHand:</b> Determines whether or not the idle animation blending occurs on left hand or not.</li>",
+                                        "<li><b>BulletShellOffs:</b> Can be useful for offsetting the bullet shells spawn positions.</li>",
+                                        "<li><b>AimPitchOffset:</b> Used for changing the firing direction of weapon.</li>",
+                                        "<li><b>CorrectiveRotation:</b> When weapon is spawned, then use this rotation to adjust its rotation.</li>",
+                                        "<li><b>BulletsType:</b> Whether to use Projectile actors as bullets or simple line trace.</li>",
+                                        "<li><b>FireType:</b> Whether the weapon is automatic, burst or single fire.</li>",
+                                        "<li><b>HitType:</b> Whether to spawn hit effects or explosions on bullet hit.</li>",
+                                        "<li><b>ExplosionSize:</b> If explosions are spawned on bullet hit then specify the size, only for line traced. For explosives, configure in respective ProjectileClass Actor.</li>",
+                                        "<li><b>BulletsPerMag:</b> How many bullets are present in single mag of this weapon.</li>",
+                                        "<li><b>InitialAmmoCount:</b> When the player equips this weapon, then how many bullets should be loaded initially.</li>",
+                                        "<li><b>InitialMags:</b> The number of mags the weapon should be equipped with.</li>",
+                                        "<li><b>FireRate:</b> The rate at which bullets come out of the weapon.</li>",
+                                        "<li><b>Range:</b> The range after which the projectile is automatically destroyed and tracing is stopped.</li>",
+                                        "<li><b>ProjectileClass:</b> The <i>BulletsType</i> is set to projectiles, then specify the type of projectiles to spawn.</li>",
+                                        "<li><b>BurstShots:</b> The number of bullets to fire in a single shot.</li>",
+                                        "<li><b>Min and Max Burst Randomiser:</b> A random rotation provided to burst weapon firing.</li>",
+                                        "<li><b>MuzzleFlash:</b> The niagara muzzle flash fx to spawn.</li>",
+                                        "<li><b>BulletShell:</b> The bullet shell static mesh that is dropped on firing.</li>",
+                                        "<li><b>UseNiagaraDataChannel:</b> Whether or not to use data channels for niagara impact effects, only used with lineTraced bulletsType.</li>",
+                                        "<li><b>ThrowWhenEmpty:</b> When there are no more bullets and mags, the weapon is thrown away.</li>",
+                                        "<li><b>bFirePhysicsImpulse:</b> Only works with Line Traced Explosive weapons, decides whether or not physics impulses are spawned with hit impacts. For Projectile Explosives, configure in respective ProjectileClass Actor.</li>",
+                                        "<li><b>PingVFX:</b> If HitType is Ping and does line trace, then this is used spawned.</li>",
+                                        "<li><b>PingSFX:</b> If HitType is Ping and does line trace, then this is used played.</li>",
+                                        "</ul>"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Unarmed Data Asset",
+                            "content": [
+                                {
+                                    "type": "header",
+                                    "value": "Unarmed Weapon Data Asset"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdna.artstation.com/p/assets/images/images/099/347/204/large/wraithcg-screenshot-2026-05-25-145438.jpg?1779705743",
+                                    "caption": "DA_UnarmedWeaponData",
+                                    "align": "full"
+                                },
+                                {
+                                    "type": "note",
+                                    "value": "Some variables and categories may feel like that they should be above or below other variables. It is because the engine has arranged the categories and variables automatically."
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "<ul>",
+                                        "<li>This is similar to MeleeDA, only exception being that no visible weapon is attached to player skeleton.</li>",
+                                        "<li>Other properties can be defined but most are not used anyway. Only base properties and combat data are used.</li>",
+                                        "</ul>"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Advanced Physical Materials",
+                            "content": [
+                                {
+                                    "type": "header",
+                                    "value": "BP_AdvancedPhysMBase"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdna.artstation.com/p/assets/images/images/099/638/118/large/wraithcg-screenshot-2026-06-03-160527.jpg?1780527826",
+                                    "caption": "BP_AdvancedPhysMBase",
+                                    "align": "left"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "<ul>",
+                                        "<li>Usual implementation of ranged weapon hit impact effects includes adding hit effects related to a weapon directly in weapon data asset.</li>",
+                                        "<li>I have tried a new method here. The hit impact data (VFX & SFX) is stored directly in the physical material.",
+                                        "<li>When hit, the weapon component fetches VFX & SFX data from the physical material, loads it asynchronously and then spawns it in game.</li>",
+                                        "<li>These parameters can be customized in weapon data assets.</li>",
+                                        "<li>I think this approach is scalable for adding decals for non-ranged weapons too, but more testing is required.</li>",
+                                        "<li>It is also easier to manage as there is only one data asset to customize.</li>",
+                                        "<li>Even though multiple \"AdvancedPhysicalMaterials (APMs)\" are present in the project, they contain recurring VFX and SFX.</li>",
+                                        "<li>You will need to add your own VFX and SFX and you can easily extend this to a much larger library.</li>",
+                                        "</ul>"
+                                    ]
+                                },
+                                {
+                                    "type": "header",
+                                    "value": "Properties"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "Based on HitType and ExplosionSize, VFX and SFX from respective categories are spawned.",
+                                        "<ul>",
+                                        "<li><b>ImpactHitFX:</b> A map of ExplosionSize to VFX and SFX for simple hit effects.</li>",
+                                        "<li><b>ExplosionHitFX:</b> A map of ExplosionSize to VFX and SFX for explosive hit effects.</li>",
+                                        "<li><b>ImpulseData:</b> A map of ExplosionSize to FieldImpulseData hit effects. Whether to spawn it or not depends on the bullets configuration.<ul>",
+                                        "<li><b>FieldImpulseStrength:</b> Strength of the physics impulse if spawned.</li>",
+                                        "<li><b>FieldImpulseRadius:</b> Radius of the physics impulse if spawned.</ul></li>",
+                                        "</ul>"
+                                    ]
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdnb.artstation.com/p/assets/images/images/099/638/119/large/wraithcg-screenshot-2026-06-03-160605.jpg?1780527830",
+                                    "caption": "APM_PhysicalMaterial Properties (Concrete)",
+                                    "align": "full"
+                                },
+                                {
+                                    "type": "header",
+                                    "value": "Adding Physical Materials to Meshes"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "There are 2 methods for adding Physical Materials - .",
+                                        "<ul>",
+                                        "<li><b>Method - 1 Assigning PhysicalMaterials in Materials and Material Instances - </b>",
+                                        "<ul>",
+                                        "<li>Open any material or material instance.</li>",
+                                        "<li>In the properties panel, search for <i>PhysicalMaterial</i> and assign your required physical material.</li></ul></li>",
+                                        "<li><b>Method - 2 Overriding PhysicalMaterials in Actors - </b>",
+                                        "<ul>",
+                                        "<li>If there's any static/skeletal mesh actor placed in the world, or any static/skeletal mesh component inside any other blueprint, select the component.</li>",
+                                        "<li>In the properties panel, search for <i>OverridePhysicalMaterial</i> or scroll down to Collisions category and assign your required physical material in the OverridPhysicalMaterial slot.</li></ul></li>",
+                                        "</ul>"
+                                    ]
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdna.artstation.com/p/assets/images/images/099/561/462/large/wraithcg-screenshot-2026-06-01-183541.jpg?1780325536",
+                                    "caption": "Method - 1 Adding in Materials and Material Instances",
+                                    "align": "full"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdna.artstation.com/p/assets/images/images/099/561/466/large/wraithcg-screenshot-2026-06-01-183556.jpg?1780325542",
+                                    "caption": "Method - 2 Override in Actors",
+                                    "align": "full"
+                                }
+                            ]
+                        },
+                        {
+                            "title": "LHIK Setup",
+                            "content": [
+                                {
+                                    "type": "header",
+                                    "value": "Setting up LeftHandIK Socket"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "<ul>",
+                                        "<li>LHIK for LeftHandIK is required for attaching left hand of the player to the weapon. Without it, highly specific and lot of animations will be required to with very complex setup so that the left hand is always positioned correctly to each weapon.</li>",
+                                        "<li>For setting up LHIK socket, go to your weapon mesh. </li>",
+                                        "<li>Define your LHIK Socket name in your weapon DA and add that socket in the weapon mesh.</li>",
+                                        "<li>Play the game, equip the weapon and then press Shift+F1.</li>",
+                                        "<li>Now you will be able to go to contentBrowser, open your weapon mesh, select your required socket.</li>",
+                                        "<li>Try changing the positions in the mesh viewport and the character's hand will reposition itself in real time.</li>",
+                                        "<li>When done, save the weapon mesh, return to editor and continue gameplay.</li>",
+                                        "</ul>"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": "Projectiles",
+                            "content": [
+                                {
+                                    "type": "tip",
+                                    "value": [
+                                        "<ul>",
+                                        "<li>All the required properties for below actors can be directly modified in weapon data assets.</li>",
+                                        "<li>Extended description with few other details are present below incase you wish to expand upon this system.</li>",
+                                        "</ul>"
+                                    ]
+                                },
+                                {
+                                    "type": "header",
+                                    "value": "Weapon Projectiles"
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdna.artstation.com/p/assets/images/images/099/702/496/large/wraithcg-screenshot-2026-06-05-185806.jpg?1780718288",
+                                    "caption": "Projectiles",
+                                    "align": "left"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "<ul>",
+                                        "<li>These are actors spawned at the Muzzle of the weapons.</li>",
+                                        "<li>They physically travel ahead and hit other objects.</li>",
+                                        "<li>These are costlier compared to line traces.</li>",
+                                        "<li><b>BP_ProjectilesMaster</b> is the base projectile class.</li>",
+                                        "<li>There are 3 types of projectiles - ",
+                                        "<ul>",
+                                        "<li>BP_ImpactProjectiles</li>",
+                                        "<li>BP_ExplosionProjectiles</li>",
+                                        "<li>BP_PingProjectiles</li></ul></li>",
+                                        "</ul>"
+                                    ]
+                                },
+                                {
+                                    "type": "header",
+                                    "value": "BP_ImpactProjectiles"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "Spawned if the weapon is of Impact type.",
+                                        "<ul>",
+                                        "<li><b>DestroyDelay:</b> A simple delay before destroying the projectile actor. Helpful if the collider is bigger than the bullet mesh.</li>",
+                                        "<li><b>Range:</b> Taken from Weapon DA, it can be left at 0.</li>",
+                                        "<li><b>Size:</b> Determines the size of impact.</li>",
+                                        "</ul>"
+                                    ]
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdnb.artstation.com/p/assets/images/images/099/702/501/large/wraithcg-screenshot-2026-06-06-084459.jpg?1780718308",
+                                    "caption": "BP_ImpactProjectile",
+                                    "align": "full"
+                                },
+                                {
+                                    "type": "header",
+                                    "value": "BP_RocketProjectiles"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "Spawned if the weapon is of Explosion type.",
+                                        "<ul>",
+                                        "<li><b>DestroyDelay:</b> A simple delay before destroying the projectile actor. Helpful if the collider is bigger than the bullet mesh or there is a trail that should dissolve.</li>",
+                                        "<li><b>Range:</b> Taken from Weapon DA, it can be left at 0.</li>",
+                                        "<li><b>Size:</b> Determines the size of explosion.</li>",
+                                        "<li><b>FirePhysicsImpulse:</b> Determines whether or not a physics impulse is fired with the explosion.<ul>",
+                                        "</ul>"
+                                    ]
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdnb.artstation.com/p/assets/images/images/099/702/505/large/wraithcg-screenshot-2026-06-06-084504.jpg?1780718314",
+                                    "caption": "BP_RocketProjectile",
+                                    "align": "full"
+                                },
+                                {
+                                    "type": "header",
+                                    "value": "BP_PingProjectiles"
+                                },
+                                {
+                                    "type": "text",
+                                    "value": [
+                                        "Spawned if the weapon is of Ping type. Ping weapon bullets spawn a custom VFX on the hit location, instead of spawning any impact effects.",
+                                        "<ul>",
+                                        "<li><b>DestroyDelay:</b> A simple delay before destroying the projectile actor. Helpful if the collider is bigger than the bullet mesh.</li>",
+                                        "<li><b>Range:</b> Taken from Weapon DA, it can be left at 0.</li>",
+                                        "</ul>"
+                                    ]
+                                },
+                                {
+                                    "type": "image",
+                                    "src": "https://cdna.artstation.com/p/assets/images/images/099/702/506/large/wraithcg-screenshot-2026-06-06-084516.jpg?1780718318",
+                                    "caption": "BP_PingProjectile",
+                                    "align": "full"
+                                }
+                            ]
+                        },
+                        {
+                    "title": "Dealing Damage",
+                    "content": [
+                        {
+                            "type": "text",
+                            "value": [
+                                "<ul>",
+                                "<li>For dealing damage, use <i>ObjectHitWithRangedWeapon</i> and <i>ObjectHitWithMeleeWeapon</i> interface functions.</li>",
+                                "<li>Implement interface <i>BPI_ObjectHit</i> in your objects that you want to get hit.</li>",
+                                "<li>If your objects have a physics material assigned, then ranged weapon hit effects are already applicable based on ranged weapon type and impact size.</li>",
+                                "<li>You will need to implement melee weapon hit effects yourself.</li>",
+                                "<li>A more refined approach will be implemented in next version.</li>",
+                                "</ul>"
+                            ]
+                        }
+                    ]
+                }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Animation Retargeting",
+            "content": [
+                {
+                    "type": "image",
+                    "src": "https://cdna.artstation.com/p/assets/images/images/099/638/078/large/wraithcg-screenshot-2026-06-03-155853.jpg?1780527733",
+                    "caption": "UEFN Skeleton - Retarget All New Animations to this skeleton",
+                    "align": "left"
+                },
+                {
+                    "type": "image",
+                    "src": "https://cdna.artstation.com/p/assets/images/images/099/638/076/large/wraithcg-screenshot-2026-06-03-155847.jpg?1780527730",
+                    "caption": "NewUEFN Skeleton & Others - Retarget only pose animations for adding sockets",
+                    "align": "right"
+                },
+                {
+                    "type": "header",
+                    "value": "Retargeting Animations"
+                },
+                {
+                    "type": "text",
+                    "value": [
+                        "<ul>",
+                        "<li>New character animations must be retargeted to <b>SK_UEFN</b> only.</li>",
+                        "<li>No new sockets must be add to <b>SK_UEFN</b>.</li>",
+                        "<li>Weapons and customization item sockets must be added to <b>SK_NewUEFN</b> and Other character skeletal meshes.</li>",
+                        "<li>For the above purposes, select animations and poses are required to be retargeted to other character skeletal meshes.</li>",
+                        "<li>Another reason for this separation is that the base UEFN skeleton is referenced by lot of assets. Any modification (adding/removing sockets, setting up socket transforms, etc;) freezes the editor for a while because all the assets are updated simultaneously.</li>",
+                        "<li>LeftHandIK socket needs to be set up for all characters (with differing scale & skeleton) for all weapons.</li>",
+                        "</ul>"
+                    ]
+                },
+                {
+                    "type":"tip",
+                    "value":[
+                        "<ul>",
+                        "<li>For playing any animation, always use <b>playerRef -> getComponentByClass -> SkeletalMeshComponent</b>.</li>",
+                        "<li>For any skeletal physics simulation or attaching any static/skeletal mesh component/actor to player, use <b>playerRef -> getPlayerCharacterSkeleton(Message) -> PlayerCharacterSkeleton</b>.</li>",
+                        "<li>This is because the animations are retargeted at runtime from UEFN base skeletal mesh to new character skeleton.</li>",
+                        "<li>But physics simulation or any attachment must be done to the new character skeletal mesh, therefore use getPlayerCharacterSkeleton interface function. Both CMC and Mover player blueprints are already set up to return the correct character skeleton.</li>",
+                        "</ul>"
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Level Setup",
+            "content": [
+                {
+                    "type": "image",
+                    "src": "https://cdna.artstation.com/p/assets/images/images/099/609/328/large/wraithcg-screenshot-2026-06-02-091232.jpg?1780454005",
+                    "caption": "BP_SplinePath",
+                    "align": "left"
+                },
+                {
+                    "type": "image",
+                    "src": "https://cdna.artstation.com/p/assets/images/images/098/072/018/large/wraithcg-screenshot-2026-04-13-123243.jpg?1776064440",
+                    "caption": "World Settings",
+                    "align": "right"
+                },
+                {
+                    "type": "header",
+                    "value": "Play in a New Level"
+                },
+                {
+                    "type": "text",
+                    "value": [
+                        "<ul>",
+                        "<li>Go to <i>File -> New Level (Basic)</i>.</li>",
+                        "<li>Place <i>PlayerStart</i> at your desired starting location of the map.</li>",
+                        "<li>Set GameMode to <i>GM_SideScroller_Mover/CMC</i>.</li>",
+                        "<li>Add a post process volume.</li>",
+                        "<li>In the details panel, search for materials.</li>",
+                        "<li>Add a new element in the post process materials array.</li>",
+                        "<li>Select Asset Reference.</li>",
+                        "<li>Now search for and add <i>MI_Highlight</i> as the material.</li>",
+                        "<li>Next, go to <i>Components > PathSpline </i> and drag-n-drop <i>BP_SplinePath</i> in the level.</li>",
+                        "<li>Double-click on the spline in the actor and draw your path by extending existing points or adding new points. </li>",
+                        "<li>Now go to DetailsPanel and search for tag.</li>",
+                        "<li>In the tags array, add a new tag and type - <i>Start</i>.</li>",
+                        "<li>Make sure the <i>PlayerStart</i> is present at the start of the splinePath, else the character will be snapped onto the splinePath relative to its location.</li>",
+                        "<li>Now Play!</li>",
+                        "</ul>"
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "FAQs",
+            "content": [],
+            "subsections": [
+                {
+                    "title": "Custom Motion Matching Setup",
+                    "content": [
+                        {
+                            "type": "text",
+                            "value": "<b>Q: Does this project use a custom motion matching system?</b><br><b>A:</b> No. This project uses the default motion matching setup and animations from the <i>GameAnimationSampleProject (GASP)</i>. No custom motion matching setup was created specifically for this template."
+                        }
+                    ]
+                },
+                {
+                    "title": "Launching Mover Characters",
+                    "content": [
+                        {
+                            "type": "text",
+                            "value": "<b>Q: How to launch mover characters in air?</b><br><b>A:</b> Mover characters do not experience physics impulses the same way CMC characters do. A simple launch simulating method makes the Mover character jump as high as the intensity of the physics impulse. Simply use the interface function <i>LaunchCharacterOffGround</i> with Mover pawn as target."
+                        }
+                    ]
+                },
+                {
+                    "title": "Speeding up Throwable Projectiles Movement",
+                    "content": [
+                        {
+                            "type": "text",
+                            "value": [
+                                "<b>Q: How to speed up the movement speed of throwable projectiles such as grenades?</b><br><b>A:</b> There is no way to speed up the movement speed of the throwables.",
+                                "<ul>",
+                                "<li>One tip is to keep the vertical distance of the projectile lower and horizontal distance higher.</li>",
+                                "<li>Another thing is that if the grenade is past its activation timer, then it will explode even if it hit anything while on the way, instead of waiting to land on the ground.</li>",
+                                "</ul>"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "title": "Ignoring Any Component in Look Ahead Trace",
+                    "content": [
+                        {
+                            "type": "text",
+                            "value": [
+                                "<b>Q: How to ignore any component - static mesh, skeletal mesh, collision volume, widget element, etc; from blocking LookAheadTrace?</b><br><b>A:</b> To stop any component from blocking the LookAheadTrace, follow these steps -.",
+                                "<ul>",
+                                "<li>Set <i>CollisionEnabled</i> to NoCollision.</li>",
+                                "<li>Set <i>ObjectType</i> to Destructible.</li>",
+                                "<li>Set <i>Ignore</i> as the collision response to all channels.</li>",
+                                "</ul>"
+                            ]
+                        },
+                        {
+                    "type": "image",
+                    "src": "https://cdnb.artstation.com/p/assets/images/images/100/046/117/large/wraithcg-screenshot-2026-06-16-074607.jpg?1781709680",
+                    "caption": "Component Collision Settings",
+                    "align": "full"
+                }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Credits",
+            "content": [
+                {
+                    "type": "text",
+                    "value": "<b>ACTraceTraversal:</b> Special thanks to Umut Faruk.<br><b>Paragon Assets:</b> Epic Games."
+                }
+            ]
+        }
+    ]
+}
