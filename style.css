@@ -6,7 +6,7 @@
     --transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ================= MODERN GLASSMORPHISM THEMES ================= */
+/* ================= MODERN GLASSMORPHISM THEMES ================ */
 body.theme-dark-orange {
     --bg-main: #050505; --bg-sidebar: rgba(12, 12, 14, 0.6); --bg-panel: rgba(20, 20, 24, 0.5); --bg-hover: rgba(35, 35, 40, 0.7);
     --border-light: rgba(255, 255, 255, 0.08); --border-strong: rgba(255, 255, 255, 0.15);

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentSectionId = null;
     
     // Load Bookmarks from LocalStorage
-    let savedBookmarks = JSON.parse(localStorage.getItem('gasp_bookmarks')) || [];
+    let savedBookmarks = JSON.parse(localStorage.getItem('ssgtmm')) || [];
 
     // DOM Elements
     const navList = document.getElementById('nav-list');
@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btnElement.innerHTML = '<i class="ph-fill ph-bookmark"></i>';
         }
         
-        localStorage.setItem('gasp_bookmarks', JSON.stringify(savedBookmarks));
+        localStorage.setItem('ssgtmm', JSON.stringify(savedBookmarks));
         renderBookmarks();
     }
 
