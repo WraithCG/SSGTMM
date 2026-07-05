@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let projectData = null;
     let flatNavList = [];
     let currentSectionId = null;
+    
+    // Load Bookmarks from LocalStorage
+    let savedBookmarks = JSON.parse(localStorage.getItem('gasp_bookmarks')) || [];
 
     // DOM Elements
     const navList = document.getElementById('nav-list');
@@ -14,6 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('next-btn');
     const prevLabel = document.getElementById('prev-label');
     const nextLabel = document.getElementById('next-label');
+    
+    // Bookmarks DOM
+    const bookmarksContainer = document.getElementById('bookmarks-container');
+    const bookmarksHeader = document.getElementById('bookmarks-header');
+    const bookmarksList = document.getElementById('bookmarks-list');
     
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const sidebar = document.getElementById('sidebar');
@@ -42,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let currentThemeIndex = 0;
     
-    // Load Saved Theme
     const savedTheme = localStorage.getItem('gasp_theme_idx');
     if (savedTheme !== null) {
         currentThemeIndex = parseInt(savedTheme, 10);
@@ -51,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Apply theme immediately
     document.body.className = themes[currentThemeIndex].class;
     if(tooltipDesktop) tooltipDesktop.textContent = themes[currentThemeIndex].name;
     if(tooltipMobile) tooltipMobile.textContent = themes[currentThemeIndex].name;
@@ -68,6 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             buildFlatNavList(data.sections);
             renderSidebar(data.sections);
+            renderBookmarks(); // Draw initial bookmarks
+            
             if(flatNavList.length > 0) loadSection(flatNavList[0].id);
         })
         .catch(err => {
@@ -75,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
             contentContainer.innerHTML = `<div class="welcome-screen"><h1>Error loading documentation</h1><p>Ensure data.json is present and valid.</p></div>`;
         });
 
-    // Theme Cycling Logic
     function cycleTheme() {
         document.body.classList.remove(themes[currentThemeIndex].class);
         currentThemeIndex = (currentThemeIndex + 1) % themes.length;
@@ -98,10 +105,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if(themeBtn) themeBtn.addEventListener('click', cycleTheme);
     if(themeBtnMobile) themeBtnMobile.addEventListener('click', cycleTheme);
 
-    // 2. Data Processing
+    // 2. Data Processing (FIXED ID GENERATION)
     function buildFlatNavList(sections) {
         sections.forEach(section => {
-            if (!section.id) section.id = 'sec-' + Math.random().toString(36).substr(2, 9);
+            // Generate a deterministic ID based on title so bookmarks persist between reloads
+            if (!section.id) section.id = 'sec-' + section.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
             flatNavList.push(section);
             if (section.subsections && section.subsections.length > 0) buildFlatNavList(section.subsections);
         });
@@ -165,6 +173,64 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // NEW: Bookmarks Toggle Dropdown
+    if (bookmarksHeader) {
+        bookmarksHeader.addEventListener('click', () => {
+            bookmarksHeader.classList.toggle('expanded');
+            bookmarksList.classList.toggle('open');
+        });
+    }
+
+    // NEW: Bookmarks Rendering Logic
+    function renderBookmarks() {
+        if (!bookmarksContainer || !bookmarksList) return;
+        
+        if (savedBookmarks.length === 0) {
+            bookmarksContainer.style.display = 'none';
+            return;
+        }
+        
+        bookmarksContainer.style.display = 'block';
+        bookmarksList.innerHTML = '';
+        
+        savedBookmarks.forEach(id => {
+            const section = flatNavList.find(s => s.id === id);
+            if (section) {
+                const li = document.createElement('li');
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'nav-item';
+                // Bullet style for bookmarked items
+                itemDiv.innerHTML = `<span><i class="ph-fill ph-bookmark" style="color:var(--accent-primary); margin-right: 5px;"></i> ${section.title}</span>`;
+                itemDiv.onclick = () => {
+                    loadSection(id);
+                    if(window.innerWidth <= 768) sidebar.classList.remove('open');
+                };
+                li.appendChild(itemDiv);
+                bookmarksList.appendChild(li);
+            }
+        });
+    }
+
+    // NEW: Bookmark Toggle Logic
+    function toggleBookmark(sectionId, btnElement) {
+        const index = savedBookmarks.indexOf(sectionId);
+        
+        if (index > -1) {
+            // Remove
+            savedBookmarks.splice(index, 1);
+            btnElement.classList.remove('active');
+            btnElement.innerHTML = '<i class="ph ph-bookmark"></i>';
+        } else {
+            // Add
+            savedBookmarks.push(sectionId);
+            btnElement.classList.add('active');
+            btnElement.innerHTML = '<i class="ph-fill ph-bookmark"></i>';
+        }
+        
+        localStorage.setItem('gasp_bookmarks', JSON.stringify(savedBookmarks));
+        renderBookmarks();
+    }
+
     // 4. Search
     searchInput.addEventListener('input', (e) => {
         const query = e.target.value.toLowerCase();
@@ -208,10 +274,31 @@ document.addEventListener('DOMContentLoaded', () => {
         void contentContainer.offsetWidth; 
         contentContainer.classList.add('content-animate');
         
+        // Inject Title Wrapper with Bookmark Button
+        const titleWrapper = document.createElement('div');
+        titleWrapper.className = 'doc-title-wrapper';
+        
         const title = document.createElement('h1');
         title.className = 'doc-title';
         title.innerHTML = section.title;
-        contentContainer.appendChild(title);
+        
+        const bkmkBtn = document.createElement('button');
+        bkmkBtn.className = 'bookmark-btn';
+        bkmkBtn.title = "Toggle Bookmark";
+        
+        const isBookmarked = savedBookmarks.includes(section.id);
+        if(isBookmarked) {
+            bkmkBtn.classList.add('active');
+            bkmkBtn.innerHTML = '<i class="ph-fill ph-bookmark"></i>';
+        } else {
+            bkmkBtn.innerHTML = '<i class="ph ph-bookmark"></i>';
+        }
+        
+        bkmkBtn.onclick = () => toggleBookmark(section.id, bkmkBtn);
+        
+        titleWrapper.appendChild(title);
+        titleWrapper.appendChild(bkmkBtn);
+        contentContainer.appendChild(titleWrapper);
 
         if (section.content) {
             let i = 0;
@@ -306,7 +393,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 el = document.createElement('div');
                 el.className = 'roadmap';
                 
-                // Identify the latest completed milestone index to expand it by default
                 let latestCompletedIdx = 0;
                 block.milestones.forEach((m, idx) => {
                     if (m.status.toLowerCase().trim() === 'completed') {

@@ -49,6 +49,19 @@
                 <input type="text" id="search-input" placeholder="Search documentation...">
             </div>
 
+            <!-- Bookmarks Section (Collapsible) -->
+            <div id="bookmarks-container" class="bookmarks-section" style="display: none;">
+                <div class="nav-item bookmarks-header" id="bookmarks-header">
+                    <span style="display: flex; align-items: center; gap: 0.5rem; text-transform: uppercase; font-family: var(--font-mono); letter-spacing: 1.5px; font-size: 0.85rem;">
+                        <i class="ph-fill ph-bookmarks" style="color: var(--accent-primary);"></i> Bookmarks
+                    </span>
+                    <i class="ph ph-caret-right" id="bookmarks-caret"></i>
+                </div>
+                <!-- nav-sub keeps it hidden/collapsed by default -->
+                <ul id="bookmarks-list" class="nav-sub" style="padding-bottom: 0.5rem;">
+                </ul>
+            </div>
+
             <nav class="nav-tree">
                 <ul id="nav-list">
                     </ul>
