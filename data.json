@@ -2477,6 +2477,67 @@
                     "value": "<b>ACTraceTraversal:</b> Special thanks to Umut Faruk.<br><b>Paragon Assets:</b> Epic Games."
                 }
             ]
+        },
+        {
+    "title": "Best Practices & Upgrading",
+    "content": [
+        {
+            "type": "text",
+            "value": [
+                "To ensure your project remains clean, maintainable, and easily upgradable when new template versions are released, it is critical to adhere to production-standard development workflows.",
+                "Modifying the core files directly can lead to unintended logic breaking and will overwrite your hard work when pulling template updates."
+            ]
+        },
+        {
+            "type": "header",
+            "value": "Project Structure Isolation"
+        },
+        {
+            "type": "text",
+            "value": [
+                "Always treat the template source directory as a read-only module.",
+                "When creating custom logic, weapons, animations, or characters, isolate them completely from the template structure."
+            ]
+        },
+        {
+            "type": "note",
+            "value": "Create a top-level directory in your Content Browser named `_MyProjectName`. Put all of your custom assets, modified blueprints, and maps inside this folder. Never save your assets inside the template's default directory layout."
+        },
+        {
+            "type": "header",
+            "value": "Blueprint Inheritance vs Mutation"
+        },
+        {
+            "type": "text",
+            "value": [
+                "Instead of opening a template Blueprint class (e.g., the base character or weapon master) and adding your variables directly into it, utilize Unreal Engine's object-oriented architecture."
+            ]
+        },
+        {
+            "type": "tip",
+            "value": "Right-click a core template Blueprint class and select <i>Create Child Blueprint Class</i>. Move that child class into your custom project folder and implement your modifications there by overriding functions or extending the parent logic."
+        },
+        {
+            "type": "header",
+            "value": "Safely Upgrading the Template"
+        },
+        {
+            "type": "text",
+            "value": [
+                "When a new version of the template becomes available on Fab or your store repository, follow these precise deployment steps to prevent data loss or project corruption:"
+            ]
+        },
+        {
+            "type": "table",
+            "headers": ["Step", "Action", "Description"],
+            "rows": [
+                ["1", "Source Control Backup", "Commit your entire project state to Git/Perforce or duplicate the folder safely before updating."],
+                ["2", "Isolate Assets", "Verify that absolutely zero custom assets reside inside the template folder."],
+                ["3", "Delete and Replace", "Delete the old template content folder entirely from your disk space, then drag-and-drop the updated template version back into the Content directory."],
+                ["4", "Reparent Blueprints", "Sometimes it may happen that some blueprints have been moved/renamed. Some blueprints then will require you to reparent your custom blueprint assets to new blueprints."]
+            ]
         }
+    ]
+}
     ]
 }
