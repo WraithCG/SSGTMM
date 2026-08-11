@@ -362,7 +362,7 @@ li { margin-bottom: 0.5rem; }
 /* Subsections Grid */
 .subsection-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.2rem; margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border-light); clear: both;}
 .subsection-card {
-    background: var(--bg-panel); border: 1px solid var(--border-light); border-radius: 12px;
+    background: var(--bg-panel); border: 1px solid var(--border-light); border-radius: 12px; 
     padding: 1.5rem; cursor: pointer; transition: all var(--transition-smooth); display: flex; align-items: center; gap: 1rem;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     backdrop-filter: blur(16px) saturate(120%); -webkit-backdrop-filter: blur(16px) saturate(120%);
